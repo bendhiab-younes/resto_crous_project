@@ -9,6 +9,7 @@ n'est pas ici (ou exporté ici depuis le board GitHub Projects) n'existe pas pou
 | --- | --- |
 | [`backlog/`](backlog/) | Epics, user stories, sprints, tâches — export CSV du board GitHub Projects |
 | [`github-project.md`](github-project.md) | Configuration et règles d'utilisation du GitHub Project |
+| [`checklist.md`](checklist.md) | Ce qu'il reste à faire : calendrier, plan de développement, rendus |
 | [`sprints/`](sprints/) | Une page par sprint : objectif, engagement, tâches, vélocité, rétrospective |
 | [`reunions/`](reunions/) | Comptes rendus de réunions (PO et internes) |
 | [`definition-of-done.md`](definition-of-done.md) | Critères de « terminé » et Definition of Ready |
