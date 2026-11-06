@@ -13,8 +13,7 @@ Le squelette de l'application est en place (T-22), mais aucune story n'est encor
 que le code.
 
 La stack **Python 3.12 · FastAPI · SQLAlchemy · SQLite · pytest**, avec un front en templates Jinja2
-(pas de SPA), a été retenue par l'équipe le 06/11/2026. La section « Décision » de l'ADR
-`docs/adr/0001-choix-de-la-stack.md` reste à remplir.
+(pas de SPA), a été retenue par l'équipe le 06/11/2026 (`docs/adr/0001-choix-de-la-stack.md`).
 
 ## Commandes
 

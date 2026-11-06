@@ -1,6 +1,6 @@
 # ADR 0001 — Choix de la stack technique
 
-- **Statut** : proposé (décision à acter en équipe, tâche **T-02**)
+- **Statut** : accepté (tâche **T-02**)
 - **Date** : 2026-10-13
 - **Participants** : toute l'équipe
 - **Décideurs** : l'équipe de développement (le PO ne se prononce pas sur la technique)
@@ -67,21 +67,20 @@ autour d'un outil existant), sur **5 séances de TP**. Les contraintes qui pèse
 
 ## Décision
 
-<!--
-À REMPLIR EN ÉQUIPE (T-02). Formuler ainsi :
-« Nous retenons l'option X parce que … Nous écartons Y parce que … »
-Ne pas pré-remplir : la décision collective fait partie de la production évaluée.
--->
+Décision prise par l'équipe le 2026-11-06.
 
-_Option retenue : …_
+Nous retenons l'**option A** (Python 3.12, FastAPI, SQLAlchemy, SQLite, pytest, front en templates
+Jinja2, `reportlab` pour les PDF) parce qu'elle permet de livrer dès le premier sprint avec très peu
+de configuration et une seule base de code.
+
+Nous écartons l'option B pour son temps de mise en route, l'option C parce qu'elle impose deux bases
+de code à une équipe de 4 personnes, et l'option D parce que l'API REST y deviendrait artificielle.
 
 ## Conséquences
 
-À compléter après la décision. Pistes à documenter :
-
-- outils à installer par chaque membre et comment on vérifie que ça tourne ;
-- structure de dossiers du projet et convention de nommage ;
-- commandes de référence (lancer l'application, lancer les tests) à mettre dans le README ;
-- ce que la décision nous ferme (par exemple : pas de front SPA dans le périmètre) ;
-- point de réexamen : si à la fin du sprint 1 la stack coûte plus qu'elle ne rapporte, on
-  rouvre cet ADR plutôt que de subir le choix.
+- Chaque membre installe Python 3.12, puis les dépendances avec `pip install -r requirements.txt`.
+- Les commandes de référence (lancer l'application, lancer les tests) sont dans le README.
+- Pas de front SPA dans le périmètre : le rendu visuel reste simple.
+- `reportlab` sera ajouté aux dépendances avec le premier export PDF.
+- Point de réexamen : si à la fin du sprint 1 la stack coûte plus qu'elle ne rapporte, on rouvre cet
+  ADR plutôt que de subir le choix.
