@@ -1,7 +1,7 @@
 # Checklist du projet
 
-État au 06/11/2026 : le cadrage est rédigé, mais rien n'est encore livré. Cette page dit quoi faire,
-dans quel ordre et qui s'en charge. Les répartitions sont des **propositions à valider en équipe**.
+État au 06/11/2026 : le cadrage est rédigé et le squelette de l'application est en place, mais aucune
+story n'est livrée. Cette page dit quoi faire, dans quel ordre et qui s'en charge.
 
 ## 1. Calendrier
 
@@ -27,7 +27,7 @@ validation → menu du jour :
 
 **Le risque est assumé.** Le sprint 1 d'origine donne environ 0,7 h par point, soit environ 41 h
 pour les 58 points restant après aujourd'hui. Les séances du 09/11 et du 10/12 offrent environ 2 h
-de développement par personne, soit 16 h à 4 ou 12 h si Younes ne code pas. Il faudra un gain
+de développement par personne, soit 16 h à 4. Il faudra un gain
 important grâce à l'IA, du travail hors séance, ou accepter de reporter les dernières stories. La
 vélocité mesurée aujourd'hui donnera le vrai écart.
 
@@ -43,24 +43,22 @@ vélocité mesurée aujourd'hui donnera le vrai écart.
 
 **Younes**
 
-- [ ] Pousser la branche de documentation et la merger dans `main`, **avant** d'activer la
-      protection (merge classique pour garder les commits séparés).
-- [x] Ajouter Adam et Aziz comme collaborateurs du dépôt.
-- [ ] Ajouter Youssef comme collaborateur (Settings → Collaborators).
-- [ ] Donner accès à l'enseignant : le dépôt est privé, alors que T-01 prévoit un dépôt public.
-      Soit le rendre public, soit inviter l'enseignant.
-- [ ] Protéger `main` (Settings → Branches) : PR obligatoire, 1 approbation, revue des Code Owners.
-      Laisser le contournement possible pour les admins, sinon une PR de Younes reste bloquée.
-- [ ] Confirmer si Younes code ou non. `docs/roles.md` dit que oui ; le plan ci-dessous suppose que
-      non. Mettre à jour `docs/roles.md` et la capacité en conséquence.
+- [x] Pousser la documentation et la merger dans `main`.
+- [x] Ajouter Adam, Aziz et Youssef comme collaborateurs du dépôt.
+- [x] Donner accès à l'enseignant : le dépôt et le board sont publics.
+- [x] Protéger `main` : PR obligatoire, 1 approbation, revue des Code Owners, contournement possible
+      pour Younes.
+- [x] Confirmer que Younes code aussi.
 - [ ] Corriger `docs/sprints/sprint-0.md` et `docs/reunions/CR-S0-cadrage.md` : garder uniquement ce
       qui s'est réellement passé et remplir les marqueurs.
 
 **Toute l'équipe (30 min en début de séance)**
 
-- [ ] Choisir la stack et remplir la section « Décision » de l'ADR 0001. T-22 en dépend.
-- [ ] Valider le calendrier, la Definition of Done et les rôles.
-- [ ] Acter l'abandon de Notion pour GitHub Projects et l'approbation des PR par Younes.
+- [x] Choisir la stack et remplir la section « Décision » de l'ADR 0001.
+- [x] Valider le calendrier.
+- [ ] Valider la Definition of Done et les rôles.
+- [ ] Noter dans le CR l'abandon de Notion pour GitHub Projects, l'approbation des PR par Younes et
+      son droit de merger ses propres PR sans relecture.
 - [ ] Renseigner la capacité du sprint dans `docs/sprints/sprint-1.md`, et y noter le changement de
       périmètre : S-03 passe au sprint 2.
 - [ ] Rédiger le CR de cette réunion le jour même.
@@ -71,9 +69,9 @@ vélocité mesurée aujourd'hui donnera le vrai écart.
       au dépôt, avec les statuts À faire, En cours, En revue et Terminé.
 - [x] Ajouter les champs Sprint, Priorité, Type de tâche, Points, Est. (h), Réel (h).
 - [x] Créer une issue par story et par tâche, dont T-22, avec l'identifiant dans le titre.
-- [ ] Vérifier le board et affecter les tâches sans responsable une fois la répartition validée.
-- [ ] Donner accès au board à l'enseignant : le rendre public n'a d'effet sur les issues que si le
-      dépôt est public, sinon l'inviter sur le dépôt et le board.
+- [x] Affecter les tâches du sprint 1 selon la répartition validée.
+- [x] Rendre le board public pour que l'enseignant y ait accès.
+- [ ] Vérifier le board.
 
 **Après la réunion**
 
@@ -82,18 +80,17 @@ vélocité mesurée aujourd'hui donnera le vrai écart.
 
 ## 3. Plan de développement
 
-### Sprint 1 (aujourd'hui) : proposition de répartition
+### Sprint 1 (aujourd'hui) : répartition
 
 | Qui | Tâches | Est. (h) |
 | --- | --- | --- |
-| Youssef | **T-22** squelette du projet : `app/`, `requirements.txt`, base de données, pytest | 1 |
+| Younes | ~~T-22 squelette du projet~~ (terminée) | 1 |
 | Youssef | T-07 à T-09 (S-01 connexion) | 2,5 |
 | Aziz | T-04 (board), puis T-10, T-11 (S-02 ingrédients) | 3 |
 | Adam | Relecture de T-05 et T-06 (première version déjà faite), puis T-12 (écrans ingrédients) | 2 |
 | Younes | Relecture des PR, T-17 (revue, CR, rétrospective) | en continu |
 
-T-22 a été ajoutée sur le board, son estimation est à confirmer. Le développement en dépend, donc
-elle passe en premier. Elle entrera dans `tasks.csv` à la clôture du sprint.
+T-22 entrera dans `tasks.csv` à la clôture du sprint.
 
 Avec 2,5 h par développeur après la réunion, ce sprint est plein. S-02 passe avant S-01 car il est
 sur le chemin critique : si le temps manque, c'est S-01 qui est reporté.
@@ -109,7 +106,7 @@ Revoir ce plan à chaque planning à partir de la vélocité réelle.
 
 ### Relecture des PR
 
-Younes étant le seul à approuver, il peut bloquer l'équipe sur une séance de 3 h.
+Younes est le seul à approuver, et il code aussi : il peut bloquer l'équipe sur une séance de 3 h.
 
 - [ ] Relire les PR au fil de la séance, pas à la fin.
 - [ ] Garder des PR petites : une tâche par PR.

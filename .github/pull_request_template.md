@@ -28,7 +28,7 @@ Comment vérifier à la main :
 ## Definition of Done
 
 - [ ] Le comportement correspond aux critères d'acceptation de la story
-- [ ] PR relue et approuvée par Younes (par un autre membre si Younes est l'auteur)
+- [ ] PR relue et approuvée par Younes
 - [ ] Documentation impactée mise à jour (README, UML, backlog)
 - [ ] Heures réelles reportées sur le board en face de l'estimation
 

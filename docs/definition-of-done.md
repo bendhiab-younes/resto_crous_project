@@ -23,7 +23,7 @@ critères ci-dessous sont **tous** vrais. Cette définition a été arrêtée en
 | # | Critère |
 | --- | --- |
 | 1 | Le livrable est commité dans le dépôt (ou exporté dans un format ouvert) |
-| 2 | Il est relu par un autre membre de l'équipe |
+| 2 | Il est relu par un autre membre de l'équipe (sauf exception de Younes, voir `CONTRIBUTING.md`) |
 | 3 | Il est référencé depuis l'index `docs/README.md` |
 | 4 | Les heures réelles sont reportées sur le board |
 
@@ -39,7 +39,7 @@ Une story n'entre dans un sprint que si :
 
 ## Ce qu'on s'interdit
 
-- Merger sa propre PR sans relecture.
+- Merger sa propre PR sans relecture (seul Younes le peut, voir `CONTRIBUTING.md`).
 - Déclarer une story « faite » sans test automatisé.
 - Reporter la mise à jour du board ou du CR de réunion « à plus tard » : on le fait en séance.
 - Laisser du code mort ou commenté « au cas où » : git garde l'historique.
