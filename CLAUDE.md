@@ -44,8 +44,8 @@ Plusieurs contenus doivent venir de l'équipe : les rédiger à sa place fausse 
   du PO, comptes rendus et rétrospectives. Les documents de suivi sont remplis pendant la séance,
   jamais reconstitués après coup. Laisser les marqueurs `<JJ/MM/AAAA>`, `<nom>`, `*à renseigner*`
   tant que l'équipe n'a pas fourni l'information.
-- **`docs/backlog/*.csv`** : ne pas les modifier à la main. Ce sont des exports de Notion, qui est
-  la source de vérité ; ils sont réexportés à la clôture de chaque sprint.
+- **`docs/backlog/*.csv`** : ne pas les modifier à la main. Ce sont des exports du board GitHub
+  Projects, qui est la source de vérité ; ils sont mis à jour à la clôture de chaque sprint.
 - **Besoins fonctionnels** : ils appartiennent au PO. En cas de doute, poser la question à
   l'équipe plutôt que de supposer ; la réponse va dans un CR de `docs/reunions/`.
 
@@ -57,8 +57,8 @@ de « terminé ». L'essentiel :
 - **Traçabilité** (point le plus important pour l'évaluation) : un besoin doit se suivre de l'epic
   jusqu'au test. L'identifiant `S-xx` ou `T-xx` apparaît dans la branche, chaque commit, le titre
   et le corps de la PR, le rapport de tests et la page de sprint.
-- **Git** : `main` est protégée, tout passe par une PR relue par une autre personne, puis squash
-  merge. Une branche par story ou tâche.
+- **Git** : `main` est protégée, tout passe par une PR approuvée par Younes (par un autre
+  membre s'il en est l'auteur), puis squash merge. Une branche par story ou tâche.
 - **Branche** : `<type>/<ID>-<description-en-kebab-case>` avec `feature`, `fix`, `test`, `docs` ou
   `chore`, par exemple `feature/S-03-creation-recette`.
 - **Commit** : `<type>(<ID>): <description à l'impératif>` en français, par exemple

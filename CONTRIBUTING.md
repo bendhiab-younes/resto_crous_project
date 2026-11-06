@@ -7,7 +7,8 @@ volontairement simples : elles doivent être tenues par 4 personnes sur 5 séanc
 
 - La branche `main` est **protégée** : pas de push direct, tout passe par une *pull request*.
 - **Une branche par story ou par tâche**, créée depuis `main` à jour.
-- Une PR doit être **relue et approuvée par au moins une autre personne** avant le merge.
+- Une PR doit être **relue et approuvée par Younes Ben Dhiab** avant le merge (`.github/CODEOWNERS`).
+  Si Younes est l'auteur de la PR, un autre membre la relit.
 - Merge en **squash** pour garder un historique lisible, puis suppression de la branche.
 - On ne commite jamais : fichiers générés, base de données locale, secrets (`.env`).
 
@@ -57,7 +58,7 @@ En pratique, l'identifiant de la story ou de la tâche apparaît :
 1. La story est priorisée avec le PO et estimée en points par l'équipe (sprint planning).
 2. Elle est découpée en tâches, chaque tâche a **un responsable** et une **estimation en heures**.
 3. Développement sur la branche dédiée, commits petits et fréquents.
-4. Ouverture de la PR, relecture par un pair, corrections éventuelles.
+4. Ouverture de la PR, relecture et approbation par Younes, corrections éventuelles.
 5. Merge, mise à jour du board, report des **heures réelles** en face de l'estimation.
 6. La story n'est « terminée » que si elle satisfait la
    [Definition of Done](docs/definition-of-done.md).

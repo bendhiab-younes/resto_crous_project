@@ -1,13 +1,15 @@
 # Documentation du projet
 
 Index de toute la documentation. Le dépôt est la **référence unique** pour les rendus : ce qui
-n'est pas ici (ou exporté ici depuis Notion) n'existe pas pour l'évaluation.
+n'est pas ici (ou exporté ici depuis le board GitHub Projects) n'existe pas pour l'évaluation.
 
 ## Conduite du projet
 
 | Document | Contenu |
 | --- | --- |
-| [`backlog/`](backlog/) | Epics, user stories, sprints, tâches — export CSV du board Notion |
+| [`backlog/`](backlog/) | Epics, user stories, sprints, tâches — export CSV du board GitHub Projects |
+| [`github-project.md`](github-project.md) | Configuration et règles d'utilisation du GitHub Project |
+| [`checklist.md`](checklist.md) | Ce qu'il reste à faire : calendrier, plan de développement, rendus |
 | [`sprints/`](sprints/) | Une page par sprint : objectif, engagement, tâches, vélocité, rétrospective |
 | [`reunions/`](reunions/) | Comptes rendus de réunions (PO et internes) |
 | [`definition-of-done.md`](definition-of-done.md) | Critères de « terminé » et Definition of Ready |

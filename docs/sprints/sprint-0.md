@@ -18,7 +18,7 @@ sprints suivants mesurables.
 | T-01 | Dépôt GitHub public + workflow git (branches, PR) | Setup | Adam Youssef--Muzzi, Younes Ben Dhiab | 1 | | en cours |
 | T-02 | Choix de la stack + ADR | Setup | Toute l'équipe | 1.5 | | en cours (décision à acter) |
 | T-03 | Definition of Done + répartition des rôles | Process | Younes Ben Dhiab | 1 | | en cours (rôles à confirmer) |
-| T-04 | Structurer Notion et donner l'accès au PO | Setup | Aziz Mdallel | 1.5 | | à faire |
+| T-04 | Structurer le board GitHub Projects et donner l'accès au PO | Setup | Aziz Mdallel | 1.5 | | à faire |
 
 **Total estimé : 5 h — Total réel : <Y> h**
 
