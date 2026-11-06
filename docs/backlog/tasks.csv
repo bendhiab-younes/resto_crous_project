@@ -1,0 +1,22 @@
+ID,Tache,Description,Type,Story,Sprint,Assigne,Est. (h),Reel (h),Statut
+T-01,"Créer le dépôt GitHub public et définir le workflow git (branches, PR)","Dépôt avec README, .gitignore, dossier /docs. Règles : branche main protégée, une branche par story, PR avec 1 relecture.",Setup,,0,"Adam Youssef--Muzzi, Younes Ben Dhiab",1,,En cours
+T-02,"Choisir la stack et documenter la décision (ADR)","Comparer les options, décider en équipe, rédiger une page : contexte, options, décision, conséquences.",Setup,,0,Toute l'équipe,1.5,,En cours
+T-03,"Rédiger la Definition of Done et répartir les rôles","Définir quand une story est « terminée » (codée, testée, relue, mergée, documentée) et attribuer les rôles de l'équipe.",Process,,0,Younes Ben Dhiab,1,,En cours
+T-04,"Structurer Notion et donner l'accès au PO","Créer les tableaux et pages de sprint, importer le backlog, partager l'espace avec l'enseignant.",Setup,,0,Aziz Mdallel,1.5,,À faire
+T-05,"Diagramme de cas d'usage","Représenter les acteurs (chef, intendant, gestion centrale, usager) et leurs interactions avec le système.",Doc,,1,Adam Youssef--Muzzi,0.5,,À faire
+T-06,"Diagramme de classes","Modéliser les entités principales (utilisateur, ingrédient, recette, menu, stock) et leurs relations.",Doc,,1,Adam Youssef--Muzzi,1,,À faire
+T-07,"Modèle User + hash du mot de passe","Créer l'entité utilisateur avec stockage sécurisé du mot de passe (haché).",Dev,S-01,1,,1,,À faire
+T-08,"Endpoints login/logout","Permettre la connexion et la déconnexion et protéger l'accès aux pages.",Dev,S-01,1,,1,,À faire
+T-09,"Page de connexion","Écran de saisie identifiant/mot de passe avec message d'erreur.",Dev,S-01,1,,0.5,,À faire
+T-10,"Modèle Ingrédient + migration","Créer l'entité ingrédient (nom, allergènes, valeurs nutritionnelles, coût) et sa table en base.",Dev,S-02,1,,0.5,,À faire
+T-11,"CRUD API ingrédients","Créer, lire, modifier, supprimer des ingrédients côté serveur, avec validation des données.",Dev,S-02,1,,1,,À faire
+T-12,"Écrans liste et formulaire d'ingrédients","Interface pour consulter la liste des ingrédients et en ajouter/modifier.",Dev,S-02,1,Adam Youssef--Muzzi,1.5,,À faire
+T-13,"Modèle Recette + lignes d'ingrédients","Créer l'entité recette (titre, type, végétarien, procédure) liée à ses ingrédients avec quantités.",Dev,S-03,1,,1,,À faire
+T-14,"CRUD API recettes","Créer, lire, modifier, supprimer des recettes côté serveur, avec leurs ingrédients.",Dev,S-03,1,,1,,À faire
+T-15,"Formulaire de recette","Interface de saisie d'une recette avec ajout dynamique de lignes d'ingrédients.",Dev,S-03,1,Adam Youssef--Muzzi,1.5,,À faire
+T-16,"Tests des API ingrédients et recettes","Écrire des tests automatisés (cas nominaux et erreurs) et noter les résultats pour le rapport.",Test,"S-02, S-03",1,,1,,À faire
+T-17,"Revue de sprint, compte rendu PO et rétrospective","Démo au PO, compte rendu de la réunion, bilan du sprint (points, heures, difficultés, actions).",Process,,1,,0.5,,À faire
+T-18,"Stabilisation, correction de bugs, rapport de tests","Corriger les défauts restants, relancer l'ensemble des tests, consolider les résultats pour le rapport.",Test,,4,,3,,À faire
+T-19,"Démo finale (scénario et répétition)","Écrire le scénario de démonstration de bout en bout et le répéter avec l'équipe.",Process,,5,,2,,À faire
+T-20,"Présentation finale (rétrospective, leçons, perspectives)","Préparer les slides : déroulement du projet, difficultés, leçons, pistes d'évolution.",Doc,,5,,3,,À faire
+T-21,"Rapport final et rétrospective","Consolider le rapport : backlog, UML, Gantt, tests, comptes rendus, rétrospective globale.",Doc,,5,Adam Youssef--Muzzi,4,,À faire

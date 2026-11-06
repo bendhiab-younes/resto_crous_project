@@ -1,0 +1,42 @@
+# macOS / OS
+.DS_Store
+.AppleDouble
+Thumbs.db
+
+# Éditeurs / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+/notes
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Tests / qualité
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Base de données locale / secrets
+*.db
+*.sqlite
+*.sqlite3
+.env
+.env.*
+!.env.example
+
+# Exports générés
+*.pdf.tmp
