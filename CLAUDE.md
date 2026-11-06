@@ -44,8 +44,8 @@ Plusieurs contenus doivent venir de l'équipe : les rédiger à sa place fausse 
   du PO, comptes rendus et rétrospectives. Les documents de suivi sont remplis pendant la séance,
   jamais reconstitués après coup. Laisser les marqueurs `<JJ/MM/AAAA>`, `<nom>`, `*à renseigner*`
   tant que l'équipe n'a pas fourni l'information.
-- **`docs/backlog/*.csv`** : ne pas les modifier à la main. Ce sont des exports de Notion, qui est
-  la source de vérité ; ils sont réexportés à la clôture de chaque sprint.
+- **`docs/backlog/*.csv`** : ne pas les modifier à la main. Ce sont des exports du board GitHub
+  Projects, qui est la source de vérité ; ils sont mis à jour à la clôture de chaque sprint.
 - **Besoins fonctionnels** : ils appartiennent au PO. En cas de doute, poser la question à
   l'équipe plutôt que de supposer ; la réponse va dans un CR de `docs/reunions/`.
 

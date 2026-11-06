@@ -2,7 +2,7 @@ ID,Tache,Description,Type,Story,Sprint,Assigne,Est. (h),Reel (h),Statut
 T-01,"Créer le dépôt GitHub public et définir le workflow git (branches, PR)","Dépôt avec README, .gitignore, dossier /docs. Règles : branche main protégée, une branche par story, PR avec 1 relecture.",Setup,,0,"Adam Youssef--Muzzi, Younes Ben Dhiab",1,,En cours
 T-02,"Choisir la stack et documenter la décision (ADR)","Comparer les options, décider en équipe, rédiger une page : contexte, options, décision, conséquences.",Setup,,0,Toute l'équipe,1.5,,En cours
 T-03,"Rédiger la Definition of Done et répartir les rôles","Définir quand une story est « terminée » (codée, testée, relue, mergée, documentée) et attribuer les rôles de l'équipe.",Process,,0,Younes Ben Dhiab,1,,En cours
-T-04,"Structurer Notion et donner l'accès au PO","Créer les tableaux et pages de sprint, importer le backlog, partager l'espace avec l'enseignant.",Setup,,0,Aziz Mdallel,1.5,,À faire
+T-04,"Structurer le board GitHub Projects et donner l'accès au PO","Créer les tableaux et pages de sprint, importer le backlog, partager l'espace avec l'enseignant.",Setup,,0,Aziz Mdallel,1.5,,À faire
 T-05,"Diagramme de cas d'usage","Représenter les acteurs (chef, intendant, gestion centrale, usager) et leurs interactions avec le système.",Doc,,1,Adam Youssef--Muzzi,0.5,,À faire
 T-06,"Diagramme de classes","Modéliser les entités principales (utilisateur, ingrédient, recette, menu, stock) et leurs relations.",Doc,,1,Adam Youssef--Muzzi,1,,À faire
 T-07,"Modèle User + hash du mot de passe","Créer l'entité utilisateur avec stockage sécurisé du mot de passe (haché).",Dev,S-01,1,,1,,À faire

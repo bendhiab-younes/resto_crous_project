@@ -60,6 +60,6 @@ pytest                            # lance la suite de tests
 | [`docs/adr/`](docs/adr/) | Décisions d'architecture (ADR) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Workflow git, conventions de nommage, revue de code |
 
-Le suivi vivant (board, estimations) est tenu sur Notion et partagé avec l'enseignant ;
+Le suivi vivant (board, estimations) est tenu sur GitHub Projects et partagé avec l'enseignant ;
 un export au format ouvert est commité dans [`docs/backlog/`](docs/backlog/) à la clôture de
 chaque sprint.
