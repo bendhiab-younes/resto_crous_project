@@ -1,0 +1,9 @@
+ID,Epic,Description,Priorite
+E1,Recettes,"Créer et consulter des recettes avec nutrition, allergènes et coût calculés",Must
+E2,Menus,"Composer des menus à partir de recettes validées, sur un cycle de 2 semaines",Must
+E3,Workflow de validation,"Proposition de recettes puis validation par l'intendant",Must
+E4,Stocks (simulation),"Stock simulé des ingrédients et alerte de manque",Must
+E5,Allergènes et nutrition,"Information des usagers sur les allergènes et la nutrition",Must
+E6,Notifications,"Alertes affichées sur la plateforme",Should
+E7,Export et API,"PDF des menus et recettes, API pour site externe",Must
+E8,Utilisateurs et sécurité,"Authentification et gestion des rôles",Must

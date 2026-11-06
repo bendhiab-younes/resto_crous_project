@@ -1,0 +1,23 @@
+ID,Epic,Story,Priorite,Points,Sprint
+S-01,E8,"En tant qu'utilisateur, je veux m'authentifier, afin de sécuriser l'accès.",Must,5,1
+S-02,E1,"En tant qu'utilisateur, je veux gérer les ingrédients (allergènes, nutrition, coût), afin d'alimenter la base générale.",Must,5,1
+S-03,E1,"En tant que chef, je veux créer une recette (titre, type, végétarien, ingrédients + quantités, procédure), afin de la proposer.",Must,5,1
+S-04,E1,"En tant qu'utilisateur, je veux voir la nutrition (pour 100 g), les allergènes et le coût d'une recette, afin d'évaluer sa pertinence.",Must,5,2
+S-05,E8,"En tant qu'administrateur, je veux gérer les rôles (chef, intendant, gestion centrale), afin de contrôler les accès.",Must,3,2
+S-06,E3,"En tant que chef, je veux proposer une recette (statut « à valider »), afin qu'elle soit évaluée.",Must,3,2
+S-07,E4,"En tant qu'intendant, je veux saisir le stock des ingrédients, afin de simuler la disponibilité.",Must,3,2
+S-08,E3,"En tant qu'intendant, je veux valider ou refuser une recette selon la disponibilité des ingrédients, afin de ne valider que le réalisable.",Must,5,2
+S-09,E2,"En tant qu'intendant, je veux composer un menu (2 protéines, 1 féculent, 1 légume, 1 végétarien), afin de planifier les repas.",Must,5,3
+S-10,E3,"En tant qu'utilisateur, je veux que seules les recettes validées soient utilisables dans un menu.",Must,1,3
+S-11,E2,"En tant qu'intendant, je veux enregistrer un menu pour un jour d'un cycle de 2 semaines, afin d'assurer la rotation.",Must,5,3
+S-12,E2,"En tant qu'utilisateur, je veux consulter le menu du jour, afin de savoir ce qui est servi.",Must,2,3
+S-13,E2,"En tant qu'intendant, je veux voir le coût total d'un menu, afin de rester dans le budget.",Must,2,3
+S-14,E4,"En tant qu'utilisateur, je veux être notifié si un ingrédient manque pour un menu, afin d'ajuster à temps.",Must,3,3
+S-15,E5,"En tant qu'usager, je veux voir les allergènes d'un menu, afin d'éviter les risques.",Must,2,3
+S-16,E7,"En tant qu'intendant, je veux imprimer un menu en PDF avec allergènes, afin de l'afficher aux usagers.",Must,3,4
+S-17,E1,"En tant que chef, je veux imprimer une recette validée en PDF, afin de la suivre en cuisine.",Should,3,4
+S-18,E3,"En tant qu'intendant, je veux voir coût et allergènes pendant la validation, afin de contrôler budget et sécurité.",Should,2,4
+S-19,E5,"En tant qu'utilisateur, je veux voir la valeur nutritionnelle approximative d'un menu, afin d'informer les usagers.",Should,3,4
+S-20,E6,"En tant qu'utilisateur, je veux consulter mes notifications sur la plateforme, afin de réagir rapidement.",Should,3,4
+S-21,E6,"En tant qu'intendant, je veux être alerté si un menu ne respecte pas le cycle, afin de corriger avant publication.",Could,3,Backlog
+S-22,E7,"En tant que développeur d'un site externe, je veux une API des menus, afin de les afficher aux étudiants.",Could,5,Backlog
