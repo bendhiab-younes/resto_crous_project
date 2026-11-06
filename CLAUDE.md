@@ -57,8 +57,8 @@ de « terminé ». L'essentiel :
 - **Traçabilité** (point le plus important pour l'évaluation) : un besoin doit se suivre de l'epic
   jusqu'au test. L'identifiant `S-xx` ou `T-xx` apparaît dans la branche, chaque commit, le titre
   et le corps de la PR, le rapport de tests et la page de sprint.
-- **Git** : `main` est protégée, tout passe par une PR relue par une autre personne, puis squash
-  merge. Une branche par story ou tâche.
+- **Git** : `main` est protégée, tout passe par une PR approuvée par Younes (par un autre
+  membre s'il en est l'auteur), puis squash merge. Une branche par story ou tâche.
 - **Branche** : `<type>/<ID>-<description-en-kebab-case>` avec `feature`, `fix`, `test`, `docs` ou
   `chore`, par exemple `feature/S-03-creation-recette`.
 - **Commit** : `<type>(<ID>): <description à l'impératif>` en français, par exemple

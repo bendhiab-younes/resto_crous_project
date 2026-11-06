@@ -19,7 +19,7 @@ avance et n'est pas oublié en fin de sprint.
 | Membre | Responsabilité transverse | Contenu |
 | --- | --- | --- |
 | Adam Youssef--Muzzi | Documentation et modélisation | UML, rapport final, cohérence de `docs/` |
-| Younes Ben Dhiab | Process et qualité (Scrum Master) | DoD, revues de PR, rétrospectives |
+| Younes Ben Dhiab | Process et qualité (Scrum Master) | DoD, relecture et approbation des PR, rétrospectives |
 | Aziz Mdallel | Outils de suivi | Board Notion, exports backlog, accès PO |
 | Youssef Essid | Tests | Stratégie de test, rapports de tests par sprint |
 
