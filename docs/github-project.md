@@ -1,34 +1,33 @@
 # GitHub Project
 
-## Configuration prévue
+## Configuration
 
-Le suivi vivant du projet sera réalisé dans un **GitHub Project** rattaché au compte
+Le suivi vivant du projet est réalisé dans un **[GitHub Project](https://github.com/users/bendhiab-younes/projects/1)** rattaché au compte
 `bendhiab-younes` et au dépôt `resto_crous_project`.
 
 | Paramètre | Valeur |
 | --- | --- |
-| Nom | Resto Crous — Gestionnaire de menus et recettes |
+| Nom | Resto CROUS — Gestionnaire de menus |
 | Propriétaire | `bendhiab-younes` |
-| Visibilité | Privé |
-| Vue principale | Board Scrum |
-| Vue complémentaire | Table du backlog |
-| Import initial | Stories `S-01` à `S-22` et tâches `T-01` à `T-21` |
+| Visibilité | Public |
+| Vue principale | Board (colonnes À faire, En cours, En revue, Terminé) |
+| Vue complémentaire | Table |
+| Import initial | Stories `S-01` à `S-22` et tâches `T-01` à `T-22` |
 
 ## Champs de suivi
 
-Le Project devra permettre de suivre au minimum :
+Le Project permet de suivre :
 
 - le statut de l'élément ;
-- le sprint (`0` à `5` ou `Backlog`) ;
+- le sprint (`Sprint 0` à `Sprint 4`, `À placer` ou `Backlog`) ;
 - la priorité MoSCoW (`Must`, `Should`, `Could`) ;
-- les points des stories ;
-- le type de tâche (`Dev`, `Test`, `Doc`, `Setup`, `Process`) ;
-- l'epic associée ;
+- les points des stories, les heures estimées et réelles des tâches ;
+- le type (`Story`, `Dev`, `Test`, `Doc`, `Setup`, `Process`) ;
+- l'epic associée, par un label ;
 - le lien avec l'issue, la branche et la pull request.
 
 Les valeurs initiales proviennent des exports présents dans [`docs/backlog/`](backlog/).
-Le board GitHub Projects deviendra la source de vérité dès sa mise en place. Les exports CSV
-seront actualisés à la clôture de chaque sprint.
+Le board GitHub Projects est la source de vérité. Les exports CSV sont actualisés à la clôture de chaque sprint.
 
 ## Règles d'utilisation
 
@@ -37,11 +36,5 @@ seront actualisés à la clôture de chaque sprint.
 3. Les issues sont affectées au sprint et à la priorité correspondants.
 4. Les branches, commits et pull requests reprennent l'identifiant de la story ou de la tâche.
 5. Les heures réelles et le statut sont renseignés pendant le sprint.
-6. À la clôture du sprint, les CSV sont exportés depuis le board puis commités.
+6. À la clôture du sprint, les CSV sont mis à jour à partir du board puis commités.
 7. Le Project est partagé avec l'enseignant, qui joue le rôle de Product Owner.
-
-## État de la mise en place
-
-La configuration ci-dessus est validée par l'équipe, mais la création effective du GitHub Project
-reste à exécuter. Aucun lien de Project n'est donc renseigné ici pour le moment.
-
