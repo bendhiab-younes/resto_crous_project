@@ -8,21 +8,18 @@ Projet de TP (Processus du développement logiciel) conduit en Scrum : une séan
 sprint, l'enseignant est le client / Product Owner. Le produit est un gestionnaire de menus et de
 recettes pour un restaurant universitaire.
 
-**Le dépôt ne contient pour l'instant que de la documentation** : ni `app/`, ni `requirements.txt`,
-ni tests. L'évaluation récompense la conduite du projet plus que la technique (voir
+Le squelette de l'application est en place (T-22), mais aucune story n'est encore livrée. L'évaluation récompense la conduite du projet plus que la technique (voir
 `docs/rapport/plan-du-rapport.md`) : la documentation de suivi est un livrable noté, au même titre
 que le code.
 
-La stack **Python 3.12 · FastAPI · SQLAlchemy · SQLite · pytest** est présentée comme acquise dans
-le README, mais elle reste **proposée** : l'ADR `docs/adr/0001-choix-de-la-stack.md` n'a pas encore
-de décision. Le front envisagé est en templates Jinja2 (pas de SPA).
+La stack **Python 3.12 · FastAPI · SQLAlchemy · SQLite · pytest**, avec un front en templates Jinja2
+(pas de SPA), a été retenue par l'équipe le 06/11/2026. La section « Décision » de l'ADR
+`docs/adr/0001-choix-de-la-stack.md` reste à remplir.
 
 ## Commandes
 
-Commandes **prévues** par le README, qui ne fonctionneront qu'une fois le premier code livré :
-
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
+python3.12 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload     # http://127.0.0.1:8000
 pytest                            # toute la suite
@@ -31,8 +28,20 @@ pytest -k TC_S02                  # les tests d'une story
 pytest -k TC_S02_03               # un seul cas de test
 ```
 
-Aucun linter ni formateur n'est configuré. Quand les commandes réelles existent, mettre à jour le
-README et cette section.
+Aucun linter ni formateur n'est configuré.
+
+## Structure du code
+
+- `app/main.py` crée l'application et monte les routers, `app/database.py` fournit `Base`, `get_db`
+  et `init_db`.
+- **Nouveau modèle** : l'importer dans `app/models/__init__.py`, sinon sa table n'est pas créée.
+  Les tables sont créées au démarrage par `init_db`, sans outil de migration : après un changement
+  de modèle, supprimer `resto.db` en local.
+- **Nouvelles routes** : un fichier par thème dans `app/routers/`, à monter dans `app/main.py`.
+- **Pages** : les templates dans `app/templates/` étendent `base.html`, utiliser `templates` de
+  `app/templating.py`.
+- **Tests** : les fixtures `client` et `db` de `tests/conftest.py` utilisent une base en mémoire
+  neuve à chaque test.
 
 ## Ce qui ne doit pas être inventé
 

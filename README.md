@@ -36,10 +36,8 @@ Décision et comparatif des options : [`docs/adr/0001-choix-de-la-stack.md`](doc
 
 ## Mise en route
 
-> À compléter dès le premier code livré (sprint 1).
-
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
+python3.12 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload     # http://127.0.0.1:8000
 pytest                            # lance la suite de tests
