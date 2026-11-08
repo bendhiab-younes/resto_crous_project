@@ -39,9 +39,12 @@ Décision et comparatif des options : [`docs/adr/0001-choix-de-la-stack.md`](doc
 ```bash
 python3.12 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+python -m app.creer_utilisateur moi CHEF    # crée un compte local
 uvicorn app.main:app --reload     # http://127.0.0.1:8000
 pytest                            # lance la suite de tests
 ```
+
+Guide complet pour l'équipe : [`docs/guide-demarrage.md`](docs/guide-demarrage.md).
 
 ## Documentation du projet
 
