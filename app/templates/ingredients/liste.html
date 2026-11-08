@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block titre %}Ingrédients{% endblock %}
+
+{% block contenu %}
+<h1>Ingrédients</h1>
+{% if erreur %}<p>{{ erreur }}</p>{% endif %}
+<p><a href="/ingredients/nouveau">Nouvel ingrédient</a></p>
+<table>
+  <tr><th>Nom</th><th>Coût / kg</th><th>Calories</th><th>Protéines</th><th>Glucides</th><th>Lipides</th><th>Allergènes</th><th></th></tr>
+  {% for ingredient in ingredients %}
+  <tr>
+    <td><a href="/ingredients/{{ ingredient.id }}">{{ ingredient.nom }}</a></td>
+    <td>{{ ingredient.cout_par_kg }}</td>
+    <td>{{ ingredient.calories }}</td>
+    <td>{{ ingredient.proteines }}</td>
+    <td>{{ ingredient.glucides }}</td>
+    <td>{{ ingredient.lipides }}</td>
+    <td>{{ ingredient.allergenes | map(attribute="nom") | join(", ") }}</td>
+    <td><form method="post" action="/ingredients/{{ ingredient.id }}/supprimer"><button>Supprimer</button></form></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

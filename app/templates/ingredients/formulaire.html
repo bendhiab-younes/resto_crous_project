@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block titre %}Ingrédient{% endblock %}
+
+{% block contenu %}
+<h1>{{ "Modifier l'ingrédient" if ingredient else "Nouvel ingrédient" }}</h1>
+<form method="post" action="/ingredients{% if ingredient %}/{{ ingredient.id }}{% endif %}">
+  {% for champ, libelle in [("nom", "Nom"), ("cout_par_kg", "Coût par kg"), ("calories", "Calories (100 g)"), ("proteines", "Protéines (100 g)"), ("glucides", "Glucides (100 g)"), ("lipides", "Lipides (100 g)")] %}
+  <p>
+    <label>{{ libelle }} <input name="{{ champ }}" value="{{ saisie[champ] }}"></label>
+    {% if erreurs[champ] %}<strong>{{ erreurs[champ] }}</strong>{% endif %}
+  </p>
+  {% endfor %}
+  <fieldset>
+    <legend>Allergènes</legend>
+    {% for allergene in allergenes %}
+    <label><input type="checkbox" name="allergenes" value="{{ allergene.id }}" {% if allergene.id | string in saisie.allergenes %}checked{% endif %}> {{ allergene.nom }}</label>
+    {% endfor %}
+    {% if erreurs.allergenes %}<strong>{{ erreurs.allergenes }}</strong>{% endif %}
+  </fieldset>
+  <button>Enregistrer</button>
+</form>
+{% endblock %}

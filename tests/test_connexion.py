@@ -47,9 +47,36 @@ def test_TC_S01_09_compte_inconnu_meme_reponse(client, utilisateur):
     assert compte_inconnu.text == mauvais_mot_de_passe.text
 
 
+def test_TC_S01_10_page_protegee_sans_session_redirige(client):
+    reponse = client.get("/ingredients", follow_redirects=False)
+
+    assert reponse.status_code == 303
+    assert reponse.headers["location"] == "/connexion"
+
+
+def test_TC_S01_11_jeton_invalide_redirige(client):
+    client.cookies.set(COOKIE, "jeton-invente")
+
+    assert client.get("/ingredients", follow_redirects=False).status_code == 303
+
+
+def test_TC_S01_12_page_protegee_accessible_une_fois_connecte(client_connecte):
+    assert client_connecte.get("/ingredients", follow_redirects=False).status_code == 200
+
+
 def test_TC_S01_13_deconnexion_efface_le_cookie(client_connecte):
     reponse = client_connecte.post("/deconnexion", follow_redirects=False)
 
     assert reponse.status_code == 303
     assert reponse.headers["location"] == "/connexion"
     assert COOKIE not in client_connecte.cookies
+
+
+def test_TC_S01_14_deconnexion_invalide_le_jeton_copie(client_connecte, db):
+    jeton = client_connecte.cookies[COOKIE]
+
+    client_connecte.post("/deconnexion")
+    client_connecte.cookies.set(COOKIE, jeton)
+
+    assert client_connecte.get("/ingredients", follow_redirects=False).status_code == 303
+    assert db.scalar(select(SessionUtilisateur)) is None
