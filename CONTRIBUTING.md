@@ -6,7 +6,8 @@ volontairement simples : elles doivent être tenues par 4 personnes sur 5 séanc
 ## 1. Règles git
 
 - La branche `main` est **protégée** : pas de push direct, tout passe par une *pull request*.
-- **Une branche par story ou par tâche**, créée depuis `main` à jour.
+- **Une branche par story ou par tâche**, créée depuis `dev` à jour, avec une PR vers `main`.
+  Younes remet `dev` au niveau de `main` après chaque merge.
 - Une PR doit être **relue et approuvée par Younes Ben Dhiab** avant le merge (`.github/CODEOWNERS`).
   Scrum Master et propriétaire du dépôt, il est le seul à pouvoir merger ses propres PR sans relecture.
 - **Seul Younes merge dans `main`**, même après son approbation. Un ruleset GitHub (« Seul Younes

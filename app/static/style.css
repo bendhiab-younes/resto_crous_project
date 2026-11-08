@@ -1,23 +1,272 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
-  color: #1f2933;
+/* Couleurs et police relevées sur les sites des Crous. */
+@font-face {
+  font-family: "Marianne";
+  src: url("https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.12.1/dist/fonts/Marianne-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: "Marianne";
+  src: url("https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.12.1/dist/fonts/Marianne-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --rouge: #e01020;
+  --rouge-fonce: #b8253a;
+  --encre: #2a2d35;
+  --gris: #6a6a6a;
+  --gris-clair: #e8e8e8;
+  --fond: #f3f3f5;
+  --blanc: #fff;
+  --rayon: 8px;
+  --police: "Marianne", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: var(--police);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--rouge-fonce);
+}
+
+:focus-visible {
+  outline: 3px solid var(--encre);
+  outline-offset: 2px;
+}
+
+/* En-tête */
 header {
-  padding: 1rem;
-  background: #1f2933;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--rouge);
 }
 
 header a {
-  color: #fff;
-  font-weight: 600;
+  color: var(--blanc);
+  font-weight: 700;
   text-decoration: none;
 }
 
+header a:hover {
+  text-decoration: underline;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+
+header form {
+  margin: 0;
+}
+
+header button {
+  background: transparent;
+  border-color: var(--blanc);
+  color: var(--blanc);
+}
+
+header button:hover {
+  background: var(--blanc);
+  border-color: var(--blanc);
+  color: var(--rouge-fonce);
+}
+
+header :focus-visible {
+  outline-color: var(--blanc);
+}
+
+/* Contenu */
 main {
-  max-width: 60rem;
-  margin: 0 auto;
+  max-width: 64rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 4px solid var(--rouge);
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+/* Boutons */
+button,
+.bouton {
+  display: inline-block;
+  padding: 0.55rem 1.25rem;
+  border: 2px solid var(--rouge);
+  border-radius: 999px;
+  background: var(--rouge);
+  color: var(--blanc);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:hover,
+.bouton:hover {
+  border-color: var(--rouge-fonce);
+  background: var(--rouge-fonce);
+}
+
+td button {
+  padding: 0.2rem 0.8rem;
+  background: var(--blanc);
+  color: var(--rouge-fonce);
+  font-size: 0.875rem;
+}
+
+td button:hover {
+  color: var(--blanc);
+}
+
+/* Formulaires */
+main > form {
+  max-width: 40rem;
+  padding: 1.5rem;
+  border-radius: var(--rayon);
+  background: var(--blanc);
+}
+
+label {
+  font-weight: 700;
+}
+
+input:not([type="checkbox"]),
+select,
+textarea {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--gris);
+  border-radius: var(--rayon);
+  background: var(--blanc);
+  color: inherit;
+  font: inherit;
+  font-weight: 400;
+}
+
+main > form > p > label > input:not([type="checkbox"]),
+main > form > p > label > select,
+main > form > p > label > textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+textarea {
+  min-height: 8rem;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--rouge);
+}
+
+fieldset {
+  margin: 0 0 1.25rem;
   padding: 1rem;
+  border: 1px solid var(--gris-clair);
+  border-radius: var(--rayon);
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: 700;
+}
+
+fieldset > label {
+  display: inline-flex;
+  gap: 0.35rem;
+  margin: 0.2rem 1rem 0.2rem 0;
+  font-weight: 400;
+}
+
+fieldset > p {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+fieldset > p > select {
+  flex: 2;
+  min-width: 0;
+}
+
+fieldset > p > input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Erreurs */
+form strong,
+.erreur {
+  color: var(--rouge-fonce);
+  font-weight: 700;
+}
+
+form strong {
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.erreur {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--rouge);
+  border-radius: var(--rayon);
+  background: var(--blanc);
+}
+
+/* Tableaux */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: var(--rayon);
+  background: var(--blanc);
+}
+
+th,
+td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--gris-clair);
+  text-align: left;
+}
+
+th {
+  background: var(--encre);
+  color: var(--blanc);
+  white-space: nowrap;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+td form {
+  margin: 0;
+}
+
+@media (max-width: 48rem) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
 }

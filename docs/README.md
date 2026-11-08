@@ -15,6 +15,7 @@ n'est pas ici (ou exporté ici depuis le board GitHub Projects) n'existe pas pou
 | [`definition-of-done.md`](definition-of-done.md) | Critères de « terminé » et Definition of Ready |
 | [`roles.md`](roles.md) | Rôles Scrum et responsabilités transverses |
 | [`planning-gantt.md`](planning-gantt.md) | Planning prévisionnel, chemin critique, risques |
+| [`guide-demarrage.md`](guide-demarrage.md) | Installer le projet, savoir qui fait quoi, livrer une tâche |
 | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) | Workflow git, conventions, revue de code |
 
 ## Technique

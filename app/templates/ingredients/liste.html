@@ -4,8 +4,8 @@
 
 {% block contenu %}
 <h1>Ingrédients</h1>
-{% if erreur %}<p>{{ erreur }}</p>{% endif %}
-<p><a href="/ingredients/nouveau">Nouvel ingrédient</a></p>
+{% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
+<p><a class="bouton" href="/ingredients/nouveau">Nouvel ingrédient</a></p>
 <table>
   <tr><th>Nom</th><th>Coût / kg</th><th>Calories</th><th>Protéines</th><th>Glucides</th><th>Lipides</th><th>Allergènes</th><th></th></tr>
   {% for ingredient in ingredients %}
