@@ -53,8 +53,8 @@ temps disponible, et S-03 dépend de S-02.
 **Total estimé : 8.5 h, plus T-23 et T-24 à estimer — Total réel : <Y> h**
 
 **Répartition modifiée le 08/11.** Younes prend le code du chemin critique (S-01, S-02, puis S-03).
-Les autres reçoivent des tâches indépendantes, chacune sur sa branche, du moins technique au plus
-technique : Adam les pages (T-09, T-12, T-15), Youssef les calculs (T-23), Aziz l'export PDF (T-24).
+Les autres reçoivent des tâches indépendantes, chacune sur sa branche : Adam les pages (T-09, T-12,
+T-15), Youssef les calculs (T-23), Aziz l'export PDF (T-24).
 Chaque issue décrit le contrat à respecter (champs, variables de template, signatures), et toutes
 les quantités sont en grammes. T-23 et T-24 avancent sur des stories des sprints suivants : leurs
 points comptent dans le sprint où la story est terminée.
