@@ -216,6 +216,16 @@ fieldset > p > input {
   min-width: 0;
 }
 
+/* Connexion */
+main > form.connexion {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+form.connexion > button {
+  width: 100%;
+}
+
 /* Erreurs */
 form strong,
 .erreur {
