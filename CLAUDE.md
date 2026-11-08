@@ -20,6 +20,7 @@ La stack **Python 3.12 · FastAPI · SQLAlchemy · SQLite · pytest**, avec un f
 ```bash
 python3.12 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+python -m app.creer_utilisateur <identifiant> <CHEF|INTENDANT|GESTION_CENTRALE>
 uvicorn app.main:app --reload     # http://127.0.0.1:8000
 pytest                            # toute la suite
 pytest -v                         # commande de référence des rapports de tests

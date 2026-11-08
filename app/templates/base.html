@@ -9,6 +9,16 @@
 <body>
   <header>
     <a href="/">Gestionnaire de menus et de recettes</a>
+    {% if request.state.utilisateur %}
+    <nav>
+      <a href="/ingredients">Ingrédients</a>
+      <form method="post" action="/deconnexion">
+        <button>Se déconnecter</button>
+      </form>
+    </nav>
+    {% else %}
+    <nav><a href="/connexion">Connexion</a></nav>
+    {% endif %}
   </header>
   <main>
     {% block contenu %}{% endblock %}
