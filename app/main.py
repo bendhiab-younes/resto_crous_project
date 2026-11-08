@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from app import models  # noqa: F401
 from app.database import SessionLocal, init_db
 from app.donnees_initiales import charger_allergenes
-from app.routers import connexion, ingredients, pages
+from app.routers import connexion, ingredients, pages, recettes
 
 
 @asynccontextmanager
@@ -24,3 +24,4 @@ app.mount("/static", StaticFiles(directory=Path(__file__).parent / "static"), na
 app.include_router(pages.router)
 app.include_router(connexion.router)
 app.include_router(ingredients.router)
+app.include_router(recettes.router)
