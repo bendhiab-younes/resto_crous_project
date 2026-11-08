@@ -9,6 +9,8 @@ volontairement simples : elles doivent être tenues par 4 personnes sur 5 séanc
 - **Une branche par story ou par tâche**, créée depuis `main` à jour.
 - Une PR doit être **relue et approuvée par Younes Ben Dhiab** avant le merge (`.github/CODEOWNERS`).
   Scrum Master et propriétaire du dépôt, il est le seul à pouvoir merger ses propres PR sans relecture.
+- **Seul Younes merge dans `main`**, même après son approbation. Un ruleset GitHub (« Seul Younes
+  merge dans main ») bloque toute mise à jour de `main` par quelqu'un d'autre qu'un admin du dépôt.
 - Merge en **squash** pour garder un historique lisible, puis suppression de la branche.
 - On ne commite jamais : fichiers générés, base de données locale, secrets (`.env`).
 
