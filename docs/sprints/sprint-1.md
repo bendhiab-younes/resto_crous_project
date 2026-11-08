@@ -10,8 +10,8 @@
 
 | Story | Intitulé | Pts | Responsable | Statut en fin de sprint |
 | --- | --- | --- | --- | --- |
-| S-01 | Authentification de l'utilisateur | 5 | Youssef Essid | |
-| S-02 | Gestion des ingrédients (allergènes, nutrition, coût) | 5 | Aziz Mdallel | |
+| S-01 | Authentification de l'utilisateur | 5 | Younes Ben Dhiab | |
+| S-02 | Gestion des ingrédients (allergènes, nutrition, coût) | 5 | Younes Ben Dhiab | |
 
 **Total engagé : 10 pts — Vélocité : <V> pts**
 
@@ -39,16 +39,25 @@ temps disponible, et S-03 dépend de S-02.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | T-05 | Diagramme de cas d'usage | Doc | — | Adam Youssef--Muzzi | 0.5 | | à faire |
 | T-06 | Diagramme de classes | Doc | — | Adam Youssef--Muzzi | 1 | | à faire |
-| T-07 | Modèle User + hash du mot de passe | Dev | S-01 | Youssef Essid | 1 | | à faire |
-| T-08 | Endpoints login/logout | Dev | S-01 | Youssef Essid | 1 | | à faire |
-| T-09 | Page de connexion | Dev | S-01 | Youssef Essid | 0.5 | | à faire |
-| T-10 | Modèle Ingrédient + migration | Dev | S-02 | Aziz Mdallel | 0.5 | | à faire |
-| T-11 | CRUD API ingrédients | Dev | S-02 | Aziz Mdallel | 1 | | à faire |
+| T-07 | Modèle User + hash du mot de passe | Dev | S-01 | Younes Ben Dhiab | 1 | | à faire |
+| T-08 | Endpoints login/logout | Dev | S-01 | Younes Ben Dhiab | 1 | | à faire |
+| T-09 | Page de connexion | Dev | S-01 | Adam Youssef--Muzzi | 0.5 | | à faire |
+| T-10 | Modèle Ingrédient + migration | Dev | S-02 | Younes Ben Dhiab | 0.5 | | à faire |
+| T-11 | CRUD API ingrédients | Dev | S-02 | Younes Ben Dhiab | 1 | | à faire |
 | T-12 | Écrans liste et formulaire d'ingrédients | Dev | S-02 | Adam Youssef--Muzzi | 1.5 | | à faire |
 | T-17 | Revue de sprint, CR PO et rétrospective | Process | — | Younes Ben Dhiab | 0.5 | | à faire |
 | T-22 | Squelette du projet | Setup | — | Younes Ben Dhiab | 1 | | fait |
+| T-23 | Calculs de recette (coût, nutrition, allergènes) | Dev | S-04 | Youssef Essid | à estimer | | à faire |
+| T-24 | Export PDF de la recette | Dev | S-17 | Aziz Mdallel | à estimer | | à faire |
 
-**Total estimé : 8.5 h — Total réel : <Y> h**
+**Total estimé : 8.5 h, plus T-23 et T-24 à estimer — Total réel : <Y> h**
+
+**Répartition modifiée le 08/11.** Younes prend le code du chemin critique (S-01, S-02, puis S-03).
+Les autres reçoivent des tâches indépendantes, chacune sur sa branche, du moins technique au plus
+technique : Adam les pages (T-09, T-12, T-15), Youssef les calculs (T-23), Aziz l'export PDF (T-24).
+Chaque issue décrit le contrat à respecter (champs, variables de template, signatures), et toutes
+les quantités sont en grammes. T-23 et T-24 avancent sur des stories des sprints suivants : leurs
+points comptent dans le sprint où la story est terminée.
 
 Le plan d'origine (12,5 h pour 12 h de capacité) dépassait la capacité. L'équipe a choisi de sortir
 S-03 du sprint : T-13 à T-16 passent au sprint 2. T-16 couvrant les tests de S-02, ces tests sont
@@ -57,7 +66,8 @@ S-03 du sprint : T-13 à T-16 passent au sprint 2. T-16 couvrant les tests de S-
 ## 3. Dépendances
 
 - Tout le développement suppose T-22 (squelette du projet), terminée.
-- T-12 (écrans) suppose T-11 (API), ou alors un travail sur données factices à rebrancher ensuite.
+- Les pages (T-09, T-12) et les tâches en avance (T-23, T-24) ne dépendent que des contrats écrits
+  dans leurs issues ; Younes les branche sur ses routes au moment du merge.
 - Si le temps manque, S-01 est reporté plutôt que S-02, qui est sur le chemin critique.
 
 ## 4. Démo au PO
