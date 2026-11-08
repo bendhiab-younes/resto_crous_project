@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app import models  # noqa: F401
 from app.database import init_db
-from app.routers import pages
+from app.routers import connexion, pages
 
 
 @asynccontextmanager
@@ -19,3 +19,4 @@ async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
 app = FastAPI(title="Gestionnaire de menus et de recettes", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory=Path(__file__).parent / "static"), name="static")
 app.include_router(pages.router)
+app.include_router(connexion.router)
