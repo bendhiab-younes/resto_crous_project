@@ -14,6 +14,10 @@ classDiagram
         +verifierMotDePasse(clair) bool
     }
 
+    class SessionUtilisateur {
+        +string jeton
+    }
+
     class Role {
         <<enumeration>>
         CHEF
@@ -24,9 +28,11 @@ classDiagram
     class Ingredient {
         +int id
         +string nom
-        +string unite
-        +float coutParUnite
-        +ValeurNutritionnelle nutrition
+        +float coutParKg
+        +float calories
+        +float proteines
+        +float glucides
+        +float lipides
         +List~Allergene~ allergenes
     }
 
@@ -120,6 +126,7 @@ classDiagram
     }
 
     Utilisateur --> Role
+    SessionUtilisateur "0..*" --> "1" Utilisateur
     Utilisateur "1" --> "0..*" Recette : auteur
     Utilisateur "1" --> "0..*" Menu : compose
     Utilisateur "1" --> "0..*" Notification : destinataire
@@ -129,7 +136,6 @@ classDiagram
     Recette "1" *-- "1..*" LigneRecette
     LigneRecette "1" --> "1" Ingredient
 
-    Ingredient "1" --> "1" ValeurNutritionnelle
     Ingredient "0..*" --> "0..*" Allergene
     Ingredient "1" --> "0..1" Stock
 
@@ -144,7 +150,9 @@ classDiagram
 
 | Choix | Raison |
 | --- | --- |
-| `ValeurNutritionnelle` en *value object* | Les valeurs nutritionnelles n'ont pas d'identité propre ; on les additionne et on les divise, c'est un calcul, pas une entité |
+| `ValeurNutritionnelle` en *value object* | Les valeurs nutritionnelles n'ont pas d'identité propre ; on les additionne et on les divise, c'est un calcul, pas une entité. L'ingrédient stocke ses valeurs pour 100 g dans ses propres champs |
+| Quantités en grammes, coût au kilo | Une seule unité dans tout le projet évite les conversions et le champ `unite` |
+| `SessionUtilisateur` en base | Supprimer la ligne invalide la session à la déconnexion, même si le cookie a été copié |
 | `LigneRecette` comme classe d'association | Elle porte la **quantité**, qui n'appartient ni à la recette ni à l'ingrédient seuls |
 | `Stock` séparé de `Ingredient` | Le stock est **simulé** et évolue indépendamment de la fiche ingrédient ; on peut le remplacer plus tard par un vrai système |
 | Allergènes **dérivés** et non saisis sur la recette | Les allergènes d'une recette sont l'union de ceux de ses ingrédients : les saisir deux fois créerait des incohérences |
