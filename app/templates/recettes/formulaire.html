@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block titre %}Recette{% endblock %}
+
+{% block contenu %}
+<h1>{{ "Modifier la recette" if recette else "Nouvelle recette" }}</h1>
+<form method="post" action="/recettes{% if recette %}/{{ recette.id }}{% endif %}">
+  <p>
+    <label>Titre <input name="titre" value="{{ saisie.titre }}"></label>
+    {% if erreurs.titre %}<strong>{{ erreurs.titre }}</strong>{% endif %}
+  </p>
+  <p>
+    <label>Type
+      <select name="type">
+        {% for type_plat in types %}
+        <option {% if type_plat == saisie.type %}selected{% endif %}>{{ type_plat }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    {% if erreurs.type %}<strong>{{ erreurs.type }}</strong>{% endif %}
+  </p>
+  <p><label><input type="checkbox" name="vegetarien" {% if saisie.vegetarien %}checked{% endif %}> Végétarien</label></p>
+  <p>
+    <label>Procédure <textarea name="procedure">{{ saisie.procedure }}</textarea></label>
+    {% if erreurs.procedure %}<strong>{{ erreurs.procedure }}</strong>{% endif %}
+  </p>
+  <fieldset>
+    <legend>Ingrédients (quantités en grammes)</legend>
+    {% if erreurs.lignes %}<strong>{{ erreurs.lignes }}</strong>{% endif %}
+    {% for ligne in saisie.lignes + [{}, {}, {}, {}, {}] %}
+    <p>
+      <select name="ingredient_id">
+        <option value=""></option>
+        {% for ingredient in ingredients %}
+        <option value="{{ ingredient.id }}" {% if ingredient.id | string == ligne.ingredient_id %}selected{% endif %}>{{ ingredient.nom }}</option>
+        {% endfor %}
+      </select>
+      <input name="quantite" value="{{ ligne.quantite or '' }}">
+    </p>
+    {% endfor %}
+  </fieldset>
+  <button>Enregistrer</button>
+</form>
+{% endblock %}

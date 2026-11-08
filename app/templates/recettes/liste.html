@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block titre %}Recettes{% endblock %}
+
+{% block contenu %}
+<h1>Recettes</h1>
+<p><a href="/recettes/nouveau">Nouvelle recette</a></p>
+<table>
+  <tr><th>Titre</th><th>Type</th><th>Végétarien</th><th>Statut</th><th></th></tr>
+  {% for recette in recettes %}
+  <tr>
+    <td><a href="/recettes/{{ recette.id }}">{{ recette.titre }}</a></td>
+    <td>{{ recette.type.value }}</td>
+    <td>{{ "Oui" if recette.vegetarien else "Non" }}</td>
+    <td>{{ recette.statut.value }}</td>
+    <td><form method="post" action="/recettes/{{ recette.id }}/supprimer"><button>Supprimer</button></form></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
