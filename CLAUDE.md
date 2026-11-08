@@ -8,7 +8,8 @@ Projet de TP (Processus du développement logiciel) conduit en Scrum : une séan
 sprint, l'enseignant est le client / Product Owner. Le produit est un gestionnaire de menus et de
 recettes pour un restaurant universitaire.
 
-Le squelette de l'application est en place (T-22), mais aucune story n'est encore livrée. L'évaluation récompense la conduite du projet plus que la technique (voir
+Le squelette de l'application (T-22) et le code de S-01, S-02 et S-03 sont en place, avec des pages
+provisoires que T-09, T-12 et T-15 remplacent. L'évaluation récompense la conduite du projet plus que la technique (voir
 `docs/rapport/plan-du-rapport.md`) : la documentation de suivi est un livrable noté, au même titre
 que le code.
 
@@ -67,7 +68,8 @@ de « terminé ». L'essentiel :
   jusqu'au test. L'identifiant `S-xx` ou `T-xx` apparaît dans la branche, chaque commit, le titre
   et le corps de la PR, le rapport de tests et la page de sprint.
 - **Git** : `main` est protégée, tout passe par une PR approuvée par Younes. Lui seul merge dans
-  `main` (ruleset GitHub), y compris ses propres PR sans relecture. Une branche par story ou tâche.
+  `main` (ruleset GitHub), y compris ses propres PR sans relecture. Une branche par story ou tâche,
+  créée depuis `dev`, que Younes remet au niveau de `main` après chaque merge.
 - **Branche** : `<type>/<ID>-<description-en-kebab-case>` avec `feature`, `fix`, `test`, `docs` ou
   `chore`, par exemple `feature/S-03-creation-recette`.
 - **Commit** : `<type>(<ID>): <description à l'impératif>` en français, par exemple
