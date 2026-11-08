@@ -26,20 +26,20 @@ validation → menu du jour :
 | 4 | 17/12 | Démo finale, présentation, rendu | 0 |
 
 **Le risque est assumé.** Le sprint 1 d'origine donne environ 0,7 h par point, soit environ 41 h
-pour les 58 points restant après aujourd'hui. Les séances du 09/11 et du 10/12 offrent environ 2 h
+pour les 58 points restant après le 06/11. Les séances du 09/11 et du 10/12 offrent environ 2 h
 de développement par personne, soit 16 h à 4. Il faudra un gain
 important grâce à l'IA, du travail hors séance, ou accepter de reporter les dernières stories. La
-vélocité mesurée aujourd'hui donnera le vrai écart.
+vélocité mesurée au sprint 1 donnera le vrai écart.
 
 À trancher :
 
 - [ ] **Younes, avec l'enseignant** : peut-on préparer le rapport et la présentation hors séance
       (T-18 à T-21 : 12 h estimées) ?
-- [ ] **Avec l'enseignant** : l'autorisation d'utiliser des outils d'IA pour coder.
+- [x] L'utilisation d'outils d'IA pour coder est autorisée.
 - [ ] **En équipe** : travailler ou non sur le code hors séance, surtout entre le 09/11 et le 10/12.
       Ces heures entrent alors dans la capacité (`docs/sprints/README.md`).
 
-## 2. Aujourd'hui (06/11)
+## 2. Séance du 06/11
 
 **Younes**
 
@@ -49,19 +49,19 @@ vélocité mesurée aujourd'hui donnera le vrai écart.
 - [x] Protéger `main` : PR obligatoire, 1 approbation, revue des Code Owners, contournement possible
       pour Younes.
 - [x] Confirmer que Younes code aussi.
-- [ ] Corriger `docs/sprints/sprint-0.md` et `docs/reunions/CR-S0-cadrage.md` : garder uniquement ce
+- [x] Corriger `docs/sprints/sprint-0.md` et `docs/reunions/CR-S0-cadrage.md` : garder uniquement ce
       qui s'est réellement passé et remplir les marqueurs.
 
 **Toute l'équipe (30 min en début de séance)**
 
 - [x] Choisir la stack et remplir la section « Décision » de l'ADR 0001.
 - [x] Valider le calendrier.
-- [ ] Valider la Definition of Done et les rôles.
-- [ ] Noter dans le CR l'abandon de Notion pour GitHub Projects, l'approbation des PR par Younes et
+- [x] Valider la Definition of Done et les rôles.
+- [x] Noter dans le CR l'abandon de Notion pour GitHub Projects, l'approbation des PR par Younes et
       son droit de merger ses propres PR sans relecture.
-- [ ] Renseigner la capacité du sprint dans `docs/sprints/sprint-1.md`, et y noter le changement de
+- [x] Renseigner la capacité du sprint dans `docs/sprints/sprint-1.md`, et y noter le changement de
       périmètre : S-03 passe au sprint 2.
-- [ ] Rédiger le CR de cette réunion le jour même.
+- [x] Rédiger le CR de cette réunion le jour même (`docs/reunions/CR-S1-planning.md`).
 
 **Aziz (T-04)**
 
@@ -75,12 +75,12 @@ vélocité mesurée aujourd'hui donnera le vrai écart.
 
 **Après la réunion**
 
-- [ ] Mettre à jour `docs/planning-gantt.md`, `docs/sprints/README.md` et la mention de « 5 séances »
-      dans `CONTRIBUTING.md` avec le calendrier validé.
+- [x] Mettre à jour `docs/planning-gantt.md` et `docs/sprints/README.md` avec le calendrier validé.
+- [ ] Mettre à jour la mention de « 5 séances » dans `CONTRIBUTING.md`.
 
 ## 3. Plan de développement
 
-### Sprint 1 (aujourd'hui) : répartition
+### Sprint 1 (06/11) : répartition
 
 | Qui | Tâches | Est. (h) |
 | --- | --- | --- |
