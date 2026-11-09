@@ -2,7 +2,12 @@ from types import SimpleNamespace
 
 import pytest
 
-from app.calculs import allergenes_recette, cout_recette, nutrition_pour_100g
+from app.calculs import (
+    allergenes_recette,
+    cout_recette,
+    ingredients_manquants,
+    nutrition_pour_100g,
+)
 
 
 def ingredient(cout_par_kg=0.0, calories=0.0, proteines=0.0, glucides=0.0, lipides=0.0, allergenes=()):
@@ -81,3 +86,48 @@ def test_TC_S04_09_allergenes_ingredients_sans_allergene():
 
 def test_TC_S04_10_allergenes_liste_vide():
     assert allergenes_recette([]) == []
+
+
+def ligne_stock(ingredient_id, nom, quantite):
+    return SimpleNamespace(
+        quantite=quantite, ingredient=SimpleNamespace(id=ingredient_id, nom=nom)
+    )
+
+
+def test_TC_S08_01_stock_suffisant():
+    assert ingredients_manquants([ligne_stock(1, "Farine", 200)], {1: 500}) == []
+
+
+def test_TC_S08_02_stock_exactement_egal_au_besoin():
+    assert ingredients_manquants([ligne_stock(1, "Farine", 200)], {1: 200}) == []
+
+
+def test_TC_S08_03_stock_insuffisant():
+    assert ingredients_manquants([ligne_stock(1, "Farine", 200)], {1: 199.5}) == ["Farine"]
+
+
+def test_TC_S08_04_ingredient_absent_du_stock():
+    assert ingredients_manquants([ligne_stock(1, "Farine", 1)], {}) == ["Farine"]
+
+
+def test_TC_S08_05_quantites_additionnees_sur_plusieurs_lignes():
+    lignes = [ligne_stock(1, "Farine", 200), ligne_stock(1, "Farine", 150)]
+
+    # Besoin total 350 g : 300 g ne suffisent pas, 350 g suffisent.
+    assert ingredients_manquants(lignes, {1: 300}) == ["Farine"]
+    assert ingredients_manquants(lignes, {1: 350}) == []
+
+
+def test_TC_S08_06_manquants_tries_sans_doublon():
+    lignes = [
+        ligne_stock(2, "Sel", 10),
+        ligne_stock(1, "Farine", 200),
+        ligne_stock(2, "Sel", 10),
+        ligne_stock(3, "Eau", 100),
+    ]
+
+    assert ingredients_manquants(lignes, {3: 100}) == ["Farine", "Sel"]
+
+
+def test_TC_S08_07_liste_vide_aucun_manquant():
+    assert ingredients_manquants([], {1: 10}) == []

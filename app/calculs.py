@@ -20,3 +20,16 @@ def nutrition_pour_100g(lignes) -> dict[str, float]:
 
 def allergenes_recette(lignes) -> list[str]:
     return sorted({allergene.nom for ligne in lignes for allergene in ligne.ingredient.allergenes})
+
+
+def ingredients_manquants(lignes, stocks: dict[int, float]) -> list[str]:
+    besoins: dict[int, float] = {}
+    noms: dict[int, str] = {}
+    for ligne in lignes:
+        besoins[ligne.ingredient.id] = besoins.get(ligne.ingredient.id, 0.0) + ligne.quantite
+        noms[ligne.ingredient.id] = ligne.ingredient.nom
+    return sorted(
+        noms[identifiant]
+        for identifiant, besoin in besoins.items()
+        if besoin > stocks.get(identifiant, 0.0)
+    )
