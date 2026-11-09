@@ -8,6 +8,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.auth import exiger_connexion
+from app.calculs import allergenes_recette, cout_recette, nutrition_pour_100g
 from app.database import get_db
 from app.models import Ingredient, LigneRecette, Recette, TypePlat, Utilisateur
 from app.templating import templates
@@ -174,6 +175,21 @@ def creer(
     auteur: Utilisateur = Depends(exiger_connexion),
 ):
     return enregistrer(request, db, formulaire, None, auteur)
+
+
+@router.get("/{recette_id}/fiche", response_class=HTMLResponse)
+def fiche(request: Request, recette_id: int, db: Session = Depends(get_db)):
+    recette = recette_ou_404(db, recette_id)
+    return templates.TemplateResponse(
+        request,
+        "recettes/fiche.html",
+        {
+            "recette": recette,
+            "cout": cout_recette(recette.lignes),
+            "nutrition": nutrition_pour_100g(recette.lignes),
+            "allergenes": allergenes_recette(recette.lignes),
+        },
+    )
 
 
 @router.get("/{recette_id}", response_class=HTMLResponse)
