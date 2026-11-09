@@ -216,6 +216,16 @@ fieldset > p > input {
   min-width: 0;
 }
 
+/* Connexion */
+main > form.connexion {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+form.connexion > button {
+  width: 100%;
+}
+
 /* Erreurs */
 form strong,
 .erreur {
@@ -262,6 +272,34 @@ tr:last-child td {
 
 td form {
   margin: 0;
+}
+
+/* Ingrédients */
+.tableau-ingredients .nombre {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.allergene-aucun {
+  color: var(--gris);
+}
+
+.actions-formulaire {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.message-vide {
+  margin: 0;
+  padding: 1.5rem;
+  border-radius: var(--rayon);
+  background: var(--blanc);
+  color: var(--gris);
+  text-align: center;
 }
 
 /* Recettes */

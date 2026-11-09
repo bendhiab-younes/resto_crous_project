@@ -1,14 +1,29 @@
 {% extends "base.html" %}
 
-{% block titre %}Ingrédient{% endblock %}
+{% block titre %}{{ "Modifier l'ingrédient" if ingredient else "Nouvel ingrédient" }}{% endblock %}
 
 {% block contenu %}
 <h1>{{ "Modifier l'ingrédient" if ingredient else "Nouvel ingrédient" }}</h1>
+{% set champs_numeriques = [
+  ("cout_par_kg", "Coût par kg"),
+  ("calories", "Calories (100 g)"),
+  ("proteines", "Protéines (100 g)"),
+  ("glucides", "Glucides (100 g)"),
+  ("lipides", "Lipides (100 g)"),
+] %}
 <form method="post" action="/ingredients{% if ingredient %}/{{ ingredient.id }}{% endif %}">
-  {% for champ, libelle in [("nom", "Nom"), ("cout_par_kg", "Coût par kg"), ("calories", "Calories (100 g)"), ("proteines", "Protéines (100 g)"), ("glucides", "Glucides (100 g)"), ("lipides", "Lipides (100 g)")] %}
   <p>
-    <label>{{ libelle }} <input name="{{ champ }}" value="{{ saisie[champ] }}"></label>
-    {% if erreurs[champ] %}<strong>{{ erreurs[champ] }}</strong>{% endif %}
+    <label for="nom">Nom
+      <input id="nom" name="nom" value="{{ saisie.nom }}" autocomplete="off" required{% if erreurs.nom %} aria-invalid="true" aria-describedby="erreur-nom"{% endif %}>
+    </label>
+    {% if erreurs.nom %}<strong id="erreur-nom">{{ erreurs.nom }}</strong>{% endif %}
+  </p>
+  {% for champ, libelle in champs_numeriques %}
+  <p>
+    <label for="{{ champ }}">{{ libelle }}
+      <input id="{{ champ }}" name="{{ champ }}" value="{{ saisie[champ] }}" inputmode="decimal" autocomplete="off" required{% if erreurs[champ] %} aria-invalid="true" aria-describedby="erreur-{{ champ }}"{% endif %}>
+    </label>
+    {% if erreurs[champ] %}<strong id="erreur-{{ champ }}">{{ erreurs[champ] }}</strong>{% endif %}
   </p>
   {% endfor %}
   <fieldset>
@@ -16,8 +31,11 @@
     {% for allergene in allergenes %}
     <label><input type="checkbox" name="allergenes" value="{{ allergene.id }}" {% if allergene.id | string in saisie.allergenes %}checked{% endif %}> {{ allergene.nom }}</label>
     {% endfor %}
-    {% if erreurs.allergenes %}<strong>{{ erreurs.allergenes }}</strong>{% endif %}
+    {% if erreurs.allergenes %}<strong id="erreur-allergenes">{{ erreurs.allergenes }}</strong>{% endif %}
   </fieldset>
-  <button>Enregistrer</button>
+  <div class="actions-formulaire">
+    <button type="submit">Enregistrer</button>
+    <a href="/ingredients">Annuler</a>
+  </div>
 </form>
 {% endblock %}
