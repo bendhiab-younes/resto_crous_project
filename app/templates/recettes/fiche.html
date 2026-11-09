@@ -23,6 +23,9 @@
 <p>Statut : <strong>{{ libelles_statuts[recette.statut.value] }}</strong></p>
 <div class="actions-formulaire">
   <a class="bouton" href="/recettes/{{ recette.id }}">Modifier</a>
+  {% if recette.statut.value == "VALIDEE" %}
+  <a class="bouton" href="/recettes/{{ recette.id }}/pdf">Télécharger le PDF</a>
+  {% endif %}
   {% if recette.statut.value == "BROUILLON" and request.state.utilisateur.role == "CHEF" %}
   <form method="post" action="/recettes/{{ recette.id }}/proposer">
     <button type="submit">Proposer à la validation</button>

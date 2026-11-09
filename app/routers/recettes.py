@@ -2,7 +2,7 @@ from itertools import zip_longest
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request, status
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -19,6 +19,7 @@ from app.models import (
     TypePlat,
     Utilisateur,
 )
+from app.pdf import pdf_recette
 from app.templating import templates
 from app.validation import lire_nombre
 
@@ -208,6 +209,29 @@ def creer(
 @router.get("/{recette_id}/fiche", response_class=HTMLResponse)
 def fiche(request: Request, recette_id: int, db: Session = Depends(get_db)):
     return afficher_fiche(request, recette_ou_404(db, recette_id))
+
+
+@router.get("/{recette_id}/pdf")
+def telecharger_pdf(request: Request, recette_id: int, db: Session = Depends(get_db)):
+    recette = recette_ou_404(db, recette_id)
+    if recette.statut is not StatutRecette.VALIDEE:
+        return afficher_fiche(
+            request,
+            recette,
+            erreur="Seule une recette validée peut être imprimée.",
+            status_code=status.HTTP_409_CONFLICT,
+        )
+    contenu = pdf_recette(
+        recette,
+        cout_recette(recette.lignes),
+        allergenes_recette(recette.lignes),
+        nutrition_pour_100g(recette.lignes),
+    )
+    return Response(
+        contenu,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="recette-{recette.id}.pdf"'},
+    )
 
 
 @router.post(
