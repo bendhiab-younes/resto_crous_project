@@ -57,6 +57,7 @@ classDiagram
         +bool vegetarien
         +string procedure
         +StatutRecette statut
+        +string motifRefus
         +coutTotal() float
         +nutritionPour100g() ValeurNutritionnelle
         +allergenes() List~Allergene~

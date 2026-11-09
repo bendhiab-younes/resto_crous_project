@@ -31,6 +31,7 @@ class Recette(Base):
     vegetarien: Mapped[bool]
     procedure: Mapped[str]
     statut: Mapped[StatutRecette] = mapped_column(default=StatutRecette.BROUILLON)
+    motif_refus: Mapped[str | None]
     auteur_id: Mapped[int] = mapped_column(ForeignKey("utilisateurs.id"))
     auteur: Mapped[Utilisateur] = relationship()
     lignes: Mapped[list["LigneRecette"]] = relationship(

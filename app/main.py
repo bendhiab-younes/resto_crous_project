@@ -9,7 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from app import models  # noqa: F401
 from app.database import SessionLocal, init_db
 from app.donnees_initiales import charger_allergenes
-from app.routers import connexion, ingredients, pages, recettes, stocks
+from app.routers import connexion, ingredients, pages, recettes, stocks, validations
 from app.templating import templates
 
 
@@ -28,6 +28,7 @@ app.include_router(connexion.router)
 app.include_router(ingredients.router)
 app.include_router(recettes.router)
 app.include_router(stocks.router)
+app.include_router(validations.router)
 
 
 @app.exception_handler(status.HTTP_403_FORBIDDEN)
