@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% macro decimal(valeur, format) %}{{ format | format(valeur) | replace(".", ",") }}{% endmacro %}
+
+{% block titre %}Valider {{ recette.titre }}{% endblock %}
+
+{% block contenu %}
+<h1>{{ recette.titre }}</h1>
+<p>{{ recette.type.value }}{% if recette.vegetarien %} · Végétarien{% endif %}</p>
+{% if erreurs.validation %}<p class="erreur" role="alert">{{ erreurs.validation }}</p>{% endif %}
+
+<div class="fiche">
+  <section>
+    <h2>Coût total</h2>
+    <p class="fiche-chiffre">{{ decimal(cout, "%.2f") }} €</p>
+  </section>
+
+  <section>
+    <h2>Ingrédients manquants</h2>
+    {% if manquants %}
+    <p class="erreur">{{ manquants | join(", ") }}</p>
+    {% else %}
+    <p>Aucun : le stock est suffisant.</p>
+    {% endif %}
+  </section>
+
+  <section>
+    <h2>Allergènes</h2>
+    <p>{{ allergenes | join(", ") if allergenes else "Aucun" }}</p>
+  </section>
+
+  <section>
+    <h2>Nutrition pour 100 g</h2>
+    <table>
+      <tr><th>Calories</th><th>Protéines</th><th>Glucides</th><th>Lipides</th></tr>
+      <tr>
+        <td>{{ decimal(nutrition.calories, "%.1f") }}</td>
+        <td>{{ decimal(nutrition.proteines, "%.1f") }}</td>
+        <td>{{ decimal(nutrition.glucides, "%.1f") }}</td>
+        <td>{{ decimal(nutrition.lipides, "%.1f") }}</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Ingrédients</h2>
+    <table>
+      <tr><th>Ingrédient</th><th>Quantité</th></tr>
+      {% for ligne in recette.lignes %}
+      <tr><td>{{ ligne.ingredient.nom }}</td><td>{{ "%g" | format(ligne.quantite) | replace(".", ",") }} g</td></tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  <section>
+    <h2>Procédure</h2>
+    <p class="fiche-procedure">{{ recette.procedure }}</p>
+  </section>
+</div>
+
+{% if not manquants %}
+<form method="post" action="/validations/{{ recette.id }}/valider">
+  <button type="submit">Valider la recette</button>
+</form>
+{% endif %}
+
+<form method="post" action="/validations/{{ recette.id }}/refuser">
+  <p>
+    <label for="motif">Motif du refus
+      <textarea id="motif" name="motif">{{ saisie.motif }}</textarea>
+    </label>
+    {% if erreurs.motif %}<strong>{{ erreurs.motif }}</strong>{% endif %}
+  </p>
+  <button type="submit">Refuser la recette</button>
+</form>
+{% endblock %}

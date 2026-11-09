@@ -13,6 +13,10 @@
     <nav>
       <a href="/ingredients">Ingrédients</a>
       <a href="/recettes">Recettes</a>
+      {% if request.state.utilisateur.role == "INTENDANT" %}
+      <a href="/stocks">Stock</a>
+      <a href="/validations">Validations</a>
+      {% endif %}
       <form method="post" action="/deconnexion">
         <button>Se déconnecter</button>
       </form>

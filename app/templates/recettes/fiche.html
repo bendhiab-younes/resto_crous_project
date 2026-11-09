@@ -21,6 +21,7 @@
 <p>{{ libelles_types[recette.type.value] }}{% if recette.vegetarien and recette.type.value != "VEGETARIEN" %} · Végétarien{% endif %}</p>
 {% if erreur %}<p class="erreur" role="alert">{{ erreur }}</p>{% endif %}
 <p>Statut : <strong>{{ libelles_statuts[recette.statut.value] }}</strong></p>
+{% if recette.statut.value == "REFUSEE" %}<p>Motif du refus : {{ recette.motif_refus }}</p>{% endif %}
 <div class="actions-formulaire">
   <a class="bouton" href="/recettes/{{ recette.id }}">Modifier</a>
   {% if recette.statut.value == "VALIDEE" %}
