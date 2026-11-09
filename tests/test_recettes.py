@@ -228,3 +228,24 @@ def test_TC_S03_17_suppression_d_un_ingredient_utilise_refusee(
     assert reponse.status_code == 409
     assert "utilisé dans une recette" in reponse.text
     assert db.get(Ingredient, farine.id) is not None
+
+
+def test_TC_S03_18_modification_sans_ingredient_refusee(client_connecte, db, utilisateur, farine):
+    recette = ajouter_recette(db, utilisateur, farine, titre="Crêpes")
+
+    reponse = poster(
+        client_connecte, farine, f"/recettes/{recette.id}", ingredient_id=[""], quantite=[""]
+    )
+
+    assert reponse.status_code == 422
+    assert "Ajouter au moins un ingrédient." in reponse.text
+    db.refresh(recette)
+    assert [(l.ingredient.nom, l.quantite) for l in recette.lignes] == [("Farine", 250)]
+
+
+@pytest.mark.parametrize("type_plat", list(TypePlat))
+def test_TC_S03_19_chaque_type_de_plat_accepte(client_connecte, db, farine, type_plat):
+    reponse = poster(client_connecte, farine, type=type_plat.value)
+
+    assert reponse.status_code == 303
+    assert db.scalar(select(Recette)).type is type_plat

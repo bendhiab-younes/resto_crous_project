@@ -1,6 +1,6 @@
 import pytest
 
-from app.models import Allergene, Ingredient, LigneRecette, Recette, TypePlat
+from app.models import Allergene, Ingredient, LigneRecette, Recette, Role, TypePlat
 
 
 def ajouter_ingredient(db, nom, cout, nutrition, allergenes=()):
@@ -95,3 +95,48 @@ def test_TC_S04_17_fiche_protegee_sans_session(client, recette):
 
 def test_TC_S04_18_la_liste_mene_a_la_fiche(client_connecte, recette):
     assert f"/recettes/{recette.id}/fiche" in client_connecte.get("/recettes").text
+
+
+def test_TC_S04_19_allergene_commun_affiche_une_seule_fois(client_connecte, db, utilisateur):
+    farine = ajouter_ingredient(db, "Farine", 1, (300, 10, 70, 1), ["Gluten"])
+    chapelure = ajouter_ingredient(db, "Chapelure", 1, (350, 12, 70, 3))
+    chapelure.allergenes = list(farine.allergenes)
+    plat = Recette(
+        titre="Panure",
+        type=TypePlat.VEGETARIEN,
+        vegetarien=True,
+        procedure="Mélanger.",
+        auteur=utilisateur,
+        lignes=[
+            LigneRecette(ingredient=farine, quantite=100),
+            LigneRecette(ingredient=chapelure, quantite=100),
+        ],
+    )
+    db.add(plat)
+    db.commit()
+
+    assert fiche(client_connecte, plat).text.count("Gluten") == 1
+
+
+def test_TC_S04_20_fiche_recalculee_apres_modification_d_un_ingredient(
+    client_connecte, db, recette
+):
+    # Attendu à la main avec la farine à 4 €/kg et 400 kcal :
+    # coût 200/1000 × 4 + 300/1000 × 1 = 1,10 ; calories (200 × 400 + 300 × 50) / 500 = 190.
+    farine = recette.lignes[0].ingredient
+    farine.cout_par_kg = 4
+    farine.calories = 400
+    db.commit()
+
+    texte = fiche(client_connecte, recette).text
+
+    assert "1,10 €" in texte
+    assert "190,0" in texte
+
+
+@pytest.mark.parametrize("role", [Role.INTENDANT, Role.GESTION_CENTRALE])
+def test_TC_S04_21_fiche_visible_par_les_autres_roles(client_avec_role, recette, role):
+    reponse = fiche(client_avec_role(role), recette)
+
+    assert reponse.status_code == 200
+    assert "0,70 €" in reponse.text
