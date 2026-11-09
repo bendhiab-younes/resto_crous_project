@@ -3,11 +3,19 @@
 {% block titre %}Connexion{% endblock %}
 
 {% block contenu %}
-<h1>Connexion</h1>
-{% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
-<form method="post" action="/connexion">
-  <p><label>Identifiant <input name="identifiant" required autofocus></label></p>
-  <p><label>Mot de passe <input name="mot_de_passe" type="password" required></label></p>
-  <button>Se connecter</button>
+<form class="connexion" method="post" action="/connexion">
+  <h1>Connexion</h1>
+  {% if erreur %}<p class="erreur" role="alert">{{ erreur }}</p>{% endif %}
+  <p>
+    <label for="identifiant">Identifiant
+      <input id="identifiant" name="identifiant" autocomplete="username" required autofocus>
+    </label>
+  </p>
+  <p>
+    <label for="mot_de_passe">Mot de passe
+      <input id="mot_de_passe" name="mot_de_passe" type="password" autocomplete="current-password" required>
+    </label>
+  </p>
+  <button type="submit">Se connecter</button>
 </form>
 {% endblock %}

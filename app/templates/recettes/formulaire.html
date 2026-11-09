@@ -1,44 +1,103 @@
 {% extends "base.html" %}
 
-{% block titre %}Recette{% endblock %}
+{% block titre %}{{ "Modifier la recette" if recette else "Nouvelle recette" }}{% endblock %}
 
 {% block contenu %}
+{% set libelles_types = {
+  "PROTEINE": "Protéine",
+  "FECULENT": "Féculent",
+  "LEGUME": "Légume",
+  "VEGETARIEN": "Végétarien",
+} %}
+{% set type_connu = saisie.type in types %}
 <h1>{{ "Modifier la recette" if recette else "Nouvelle recette" }}</h1>
 <form method="post" action="/recettes{% if recette %}/{{ recette.id }}{% endif %}">
   <p>
-    <label>Titre <input name="titre" value="{{ saisie.titre }}"></label>
-    {% if erreurs.titre %}<strong>{{ erreurs.titre }}</strong>{% endif %}
+    <label for="titre">Titre
+      <input id="titre" name="titre" value="{{ saisie.titre }}" autocomplete="off" required{% if erreurs.titre %} aria-invalid="true" aria-describedby="erreur-titre"{% endif %}>
+    </label>
+    {% if erreurs.titre %}<strong id="erreur-titre">{{ erreurs.titre }}</strong>{% endif %}
   </p>
   <p>
-    <label>Type
-      <select name="type">
+    <label for="type">Type de plat
+      <select id="type" name="type" required{% if erreurs.type %} aria-invalid="true" aria-describedby="erreur-type"{% endif %}>
+        <option value="" {% if not type_connu %}selected{% endif %}>Choisir un type de plat</option>
         {% for type_plat in types %}
-        <option {% if type_plat == saisie.type %}selected{% endif %}>{{ type_plat }}</option>
+        <option value="{{ type_plat }}" {% if type_plat == saisie.type %}selected{% endif %}>{{ libelles_types.get(type_plat, type_plat) }}</option>
         {% endfor %}
       </select>
     </label>
-    {% if erreurs.type %}<strong>{{ erreurs.type }}</strong>{% endif %}
+    {% if erreurs.type %}<strong id="erreur-type">{{ erreurs.type }}</strong>{% endif %}
   </p>
-  <p><label><input type="checkbox" name="vegetarien" {% if saisie.vegetarien %}checked{% endif %}> Végétarien</label></p>
   <p>
-    <label>Procédure <textarea name="procedure">{{ saisie.procedure }}</textarea></label>
-    {% if erreurs.procedure %}<strong>{{ erreurs.procedure }}</strong>{% endif %}
+    <label><input type="checkbox" name="vegetarien" {% if saisie.vegetarien %}checked{% endif %}> Convient aux végétariens</label>
   </p>
-  <fieldset>
+  <p>
+    <label for="procedure">Procédure
+      <textarea id="procedure" name="procedure" required{% if erreurs.procedure %} aria-invalid="true" aria-describedby="erreur-procedure"{% endif %}>{{ saisie.procedure }}</textarea>
+    </label>
+    {% if erreurs.procedure %}<strong id="erreur-procedure">{{ erreurs.procedure }}</strong>{% endif %}
+  </p>
+  <fieldset class="lignes-recette"{% if erreurs.lignes %} aria-describedby="erreur-lignes"{% endif %}>
     <legend>Ingrédients (quantités en grammes)</legend>
-    {% if erreurs.lignes %}<strong>{{ erreurs.lignes }}</strong>{% endif %}
-    {% for ligne in saisie.lignes + [{}, {}, {}, {}, {}] %}
-    <p>
-      <select name="ingredient_id">
-        <option value=""></option>
-        {% for ingredient in ingredients %}
-        <option value="{{ ingredient.id }}" {% if ingredient.id | string == ligne.ingredient_id %}selected{% endif %}>{{ ingredient.nom }}</option>
-        {% endfor %}
-      </select>
-      <input name="quantite" value="{{ ligne.quantite or '' }}">
-    </p>
-    {% endfor %}
+    {% if erreurs.lignes %}<strong id="erreur-lignes">{{ erreurs.lignes }}</strong>{% endif %}
+    <div id="lignes" class="lignes">
+      {% for ligne in saisie.lignes + [{}] %}
+      <div class="ligne-ingredient">
+        <select name="ingredient_id" aria-label="Ingrédient">
+          <option value="">Choisir un ingrédient</option>
+          {% for ingredient in ingredients %}
+          <option value="{{ ingredient.id }}" {% if ingredient.id | string == ligne.ingredient_id %}selected{% endif %}>{{ ingredient.nom }}</option>
+          {% endfor %}
+        </select>
+        <input name="quantite" value="{{ ligne.quantite or '' }}" inputmode="decimal" aria-label="Quantité en grammes" placeholder="Quantité en g">
+        <button type="button" class="bouton-secondaire retirer-ligne" aria-label="Retirer cette ligne">Retirer</button>
+      </div>
+      {% endfor %}
+    </div>
+    <button type="button" id="ajouter-ligne" class="bouton-secondaire">Ajouter un ingrédient</button>
   </fieldset>
-  <button>Enregistrer</button>
+  <div class="actions-recette">
+    <button type="submit">Enregistrer</button>
+    <a href="/recettes">Annuler</a>
+  </div>
 </form>
+
+<template id="modele-ligne">
+  <div class="ligne-ingredient">
+    <select name="ingredient_id" aria-label="Ingrédient">
+      <option value="">Choisir un ingrédient</option>
+      {% for ingredient in ingredients %}
+      <option value="{{ ingredient.id }}">{{ ingredient.nom }}</option>
+      {% endfor %}
+    </select>
+    <input name="quantite" inputmode="decimal" aria-label="Quantité en grammes" placeholder="Quantité en g">
+    <button type="button" class="bouton-secondaire retirer-ligne" aria-label="Retirer cette ligne">Retirer</button>
+  </div>
+</template>
+
+<script>
+  const lignes = document.getElementById("lignes");
+  const modele = document.getElementById("modele-ligne");
+
+  document.getElementById("ajouter-ligne").addEventListener("click", () => {
+    const ligne = modele.content.cloneNode(true);
+    lignes.appendChild(ligne);
+    lignes.lastElementChild.querySelector("select").focus();
+  });
+
+  lignes.addEventListener("click", (evenement) => {
+    const bouton = evenement.target.closest(".retirer-ligne");
+    if (!bouton) {
+      return;
+    }
+    const ligne = bouton.closest(".ligne-ingredient");
+    if (lignes.children.length > 1) {
+      ligne.remove();
+      return;
+    }
+    ligne.querySelector("select").value = "";
+    ligne.querySelector("input").value = "";
+  });
+</script>
 {% endblock %}

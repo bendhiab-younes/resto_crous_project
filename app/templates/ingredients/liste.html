@@ -4,21 +4,42 @@
 
 {% block contenu %}
 <h1>Ingrédients</h1>
-{% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
+{% if erreur %}<p class="erreur" role="alert">{{ erreur }}</p>{% endif %}
 <p><a class="bouton" href="/ingredients/nouveau">Nouvel ingrédient</a></p>
-<table>
-  <tr><th>Nom</th><th>Coût / kg</th><th>Calories</th><th>Protéines</th><th>Glucides</th><th>Lipides</th><th>Allergènes</th><th></th></tr>
-  {% for ingredient in ingredients %}
-  <tr>
-    <td><a href="/ingredients/{{ ingredient.id }}">{{ ingredient.nom }}</a></td>
-    <td>{{ ingredient.cout_par_kg }}</td>
-    <td>{{ ingredient.calories }}</td>
-    <td>{{ ingredient.proteines }}</td>
-    <td>{{ ingredient.glucides }}</td>
-    <td>{{ ingredient.lipides }}</td>
-    <td>{{ ingredient.allergenes | map(attribute="nom") | join(", ") }}</td>
-    <td><form method="post" action="/ingredients/{{ ingredient.id }}/supprimer"><button>Supprimer</button></form></td>
-  </tr>
-  {% endfor %}
+{% if ingredients %}
+<table class="tableau-ingredients">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col" class="nombre">Coût / kg</th>
+      <th scope="col" class="nombre">Calories (100 g)</th>
+      <th scope="col" class="nombre">Protéines (100 g)</th>
+      <th scope="col" class="nombre">Glucides (100 g)</th>
+      <th scope="col" class="nombre">Lipides (100 g)</th>
+      <th scope="col">Allergènes</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ingredient in ingredients %}
+    <tr>
+      <td><a href="/ingredients/{{ ingredient.id }}">{{ ingredient.nom }}</a></td>
+      <td class="nombre">{{ ingredient.cout_par_kg }}</td>
+      <td class="nombre">{{ ingredient.calories }}</td>
+      <td class="nombre">{{ ingredient.proteines }}</td>
+      <td class="nombre">{{ ingredient.glucides }}</td>
+      <td class="nombre">{{ ingredient.lipides }}</td>
+      <td>{% if ingredient.allergenes %}{{ ingredient.allergenes | map(attribute="nom") | join(", ") }}{% else %}<span class="allergene-aucun">Aucun</span>{% endif %}</td>
+      <td>
+        <form method="post" action="/ingredients/{{ ingredient.id }}/supprimer">
+          <button type="submit" aria-label="Supprimer {{ ingredient.nom }}">Supprimer</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
+{% else %}
+<p class="message-vide">Aucun ingrédient enregistré pour le moment.</p>
+{% endif %}
 {% endblock %}
