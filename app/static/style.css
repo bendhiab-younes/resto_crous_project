@@ -264,6 +264,46 @@ td form {
   margin: 0;
 }
 
+/* Recettes */
+.lignes {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.ligne-ingredient {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ligne-ingredient select {
+  flex: 2 1 12rem;
+  min-width: 0;
+}
+
+.ligne-ingredient input {
+  flex: 1 1 8rem;
+  min-width: 0;
+}
+
+.bouton-secondaire {
+  background: var(--blanc);
+  color: var(--rouge-fonce);
+}
+
+.bouton-secondaire:hover {
+  background: var(--rouge-fonce);
+  color: var(--blanc);
+}
+
+.actions-recette {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
 @media (max-width: 48rem) {
   table {
     display: block;
