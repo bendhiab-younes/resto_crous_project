@@ -7,7 +7,7 @@ rédigé au fil de l'eau (pas reconstitué à la fin), à partir du template
 | Sprint | Rapport |
 | --- | --- |
 | 1 | *à créer : `sprint-1.md`* |
-| 2 | *à créer* |
+| 2 | [`sprint-2.md`](sprint-2.md) |
 | 3 | *à créer* |
 | 4 | *à créer* |
 | 5 | *consolidation pour le rapport final (T-18)* |
