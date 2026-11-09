@@ -1,5 +1,6 @@
 import pytest
 
+from app.changer_role import changer_role
 from app.models import Ingredient, LigneRecette, Recette, Role, StatutRecette, TypePlat
 
 
@@ -98,3 +99,32 @@ def test_TC_S06_09_statut_affiche_sur_la_fiche(client_connecte, db, recette):
     db.commit()
 
     assert "À valider" in fiche(client_connecte, recette)
+
+
+def test_TC_S06_10_proposition_refusee_a_la_gestion_centrale(client_avec_role, db, recette):
+    reponse = proposer(client_avec_role(Role.GESTION_CENTRALE), recette)
+
+    assert reponse.status_code == 403
+    db.refresh(recette)
+    assert recette.statut is StatutRecette.BROUILLON
+
+
+def test_TC_S05_06_role_retire_bloque_la_session_ouverte(client_connecte, db, recette):
+    changer_role(db, "chef", Role.INTENDANT)
+
+    reponse = proposer(client_connecte, recette)
+
+    assert reponse.status_code == 403
+    db.refresh(recette)
+    assert recette.statut is StatutRecette.BROUILLON
+
+
+def test_TC_S05_07_role_attribue_donne_acces(client_avec_role, db, recette):
+    client = client_avec_role(Role.INTENDANT)
+    changer_role(db, "intendant", Role.CHEF)
+
+    reponse = proposer(client, recette)
+
+    assert reponse.status_code == 303
+    db.refresh(recette)
+    assert recette.statut is StatutRecette.A_VALIDER

@@ -40,3 +40,11 @@ def test_TC_S05_05_changer_le_role_d_un_compte_inconnu(db, utilisateur):
 
     db.refresh(utilisateur)
     assert utilisateur.role is Role.CHEF
+
+
+@pytest.mark.parametrize("role", [Role.CHEF, Role.INTENDANT, Role.GESTION_CENTRALE])
+def test_TC_S05_08_chaque_role_peut_etre_attribue(db, utilisateur, role):
+    changer_role(db, "chef", role)
+
+    db.refresh(utilisateur)
+    assert utilisateur.role is role

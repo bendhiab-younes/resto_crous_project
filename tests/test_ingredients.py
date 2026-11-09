@@ -1,3 +1,4 @@
+import pytest
 from sqlalchemy import select
 
 from app.donnees_initiales import ALLERGENES_REGLEMENTAIRES, charger_allergenes
@@ -202,3 +203,46 @@ def test_TC_S02_19_allergenes_reglementaires_charges_une_seule_fois(db):
     charger_allergenes(db)
 
     assert len(db.scalars(select(Allergene.nom)).all()) == len(ALLERGENES_REGLEMENTAIRES)
+
+
+def test_TC_S02_20_cout_negatif_refuse_en_modification(client_connecte, db):
+    ingredient = creer(db, nom="Farine")
+
+    reponse = poster(client_connecte, f"/ingredients/{ingredient.id}", cout_par_kg="-1")
+
+    assert reponse.status_code == 422
+    assert "Le coût ne peut pas être négatif." in reponse.text
+    db.refresh(ingredient)
+    assert ingredient.cout_par_kg == 1.2
+
+
+def test_TC_S02_21_nom_vide_refuse_en_modification(client_connecte, db):
+    ingredient = creer(db, nom="Farine")
+
+    reponse = poster(client_connecte, f"/ingredients/{ingredient.id}", nom="  ")
+
+    assert reponse.status_code == 422
+    assert "Le nom est obligatoire." in reponse.text
+    db.refresh(ingredient)
+    assert ingredient.nom == "Farine"
+
+
+@pytest.mark.parametrize("champ", ["calories", "proteines", "glucides", "lipides"])
+def test_TC_S02_22_valeur_nutritionnelle_negative_refusee(client_connecte, db, champ):
+    reponse = poster(client_connecte, **{champ: "-1"})
+
+    assert reponse.status_code == 422
+    assert "La valeur ne peut pas être négative." in reponse.text
+    assert noms(db) == []
+
+
+def test_TC_S02_23_modification_des_allergenes(client_connecte, db):
+    gluten = allergene(db, "Gluten")
+    lait = allergene(db, "Lait")
+    ingredient = creer(db, nom="Farine", allergenes=[gluten])
+
+    reponse = poster(client_connecte, f"/ingredients/{ingredient.id}", allergenes=[str(lait.id)])
+
+    assert reponse.status_code == 303
+    db.refresh(ingredient)
+    assert [a.nom for a in ingredient.allergenes] == ["Lait"]
