@@ -348,3 +348,30 @@ td form {
     overflow-x: auto;
   }
 }
+
+/* Fiche de recette */
+.fiche section {
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: var(--rayon);
+  background: var(--blanc);
+}
+
+.fiche h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.fiche p {
+  margin: 0;
+}
+
+.fiche-chiffre {
+  color: var(--rouge-fonce);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.fiche-procedure {
+  white-space: pre-line;
+}
