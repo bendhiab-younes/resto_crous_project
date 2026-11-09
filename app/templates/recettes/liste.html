@@ -6,13 +6,14 @@
 <h1>Recettes</h1>
 <p><a class="bouton" href="/recettes/nouveau">Nouvelle recette</a></p>
 <table>
-  <tr><th>Titre</th><th>Type</th><th>Végétarien</th><th>Statut</th><th></th></tr>
+  <tr><th>Titre</th><th>Type</th><th>Végétarien</th><th>Statut</th><th></th><th></th></tr>
   {% for recette in recettes %}
   <tr>
-    <td><a href="/recettes/{{ recette.id }}">{{ recette.titre }}</a></td>
+    <td><a href="/recettes/{{ recette.id }}/fiche">{{ recette.titre }}</a></td>
     <td>{{ recette.type.value }}</td>
     <td>{{ "Oui" if recette.vegetarien else "Non" }}</td>
     <td>{{ recette.statut.value }}</td>
+    <td><a href="/recettes/{{ recette.id }}">Modifier</a></td>
     <td><form method="post" action="/recettes/{{ recette.id }}/supprimer"><button>Supprimer</button></form></td>
   </tr>
   {% endfor %}
