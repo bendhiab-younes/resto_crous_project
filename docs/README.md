@@ -31,13 +31,14 @@ n'est pas ici (ou exporté ici depuis le board GitHub Projects) n'existe pas pou
 | Document | Contenu |
 | --- | --- |
 | [`rapport/plan-du-rapport.md`](rapport/plan-du-rapport.md) | Plan du rapport et correspondance rendu → source |
+| [`rapport/rapport-final.md`](rapport/rapport-final.md) | Rapport final évolutif et rétrospective globale (T-21) |
 
 ## Correspondance rendus attendus → livrables
 
 | Rendu attendu | Où il se trouve | État |
 | --- | --- | --- |
 | Code + git + documentation | dépôt, `CONTRIBUTING.md`, `docs/` | à produire à partir du sprint 1 |
-| Rapport | `docs/rapport/` | plan posé, rédaction en sprint 5 |
+| Rapport | `docs/rapport/` | brouillon évolutif commencé, à compléter jusqu'à la clôture |
 | Modélisation UML ou Gantt | `docs/uml/`, `docs/planning-gantt.md` | première version faite |
 | Rapports de tests | `docs/tests/` | template prêt, un rapport par sprint |
 | Comptes rendus de réunions | `docs/reunions/` | template + CR de cadrage |
