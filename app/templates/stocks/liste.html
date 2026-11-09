@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+<h1>Stocks</h1>
+<ul>
+  {% for ligne in lignes %}
+  <li>
+    {{ ligne.ingredient.nom }} —
+    {% if ligne.stock %}
+      {{ ligne.stock.quantite_disponible }} g disponibles,
+      seuil {{ ligne.stock.seuil_alerte }} g
+    {% else %}
+      non saisi
+    {% endif %}
+    <a href="/stocks/{{ ligne.ingredient.id }}">Saisir</a>
+  </li>
+  {% else %}
+  <li>Aucun ingrédient.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

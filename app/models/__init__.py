@@ -2,6 +2,7 @@
 
 from app.models.ingredient import Allergene, Ingredient
 from app.models.recette import LigneRecette, Recette, StatutRecette, TypePlat
+from app.models.stock import Stock
 from app.models.utilisateur import Role, SessionUtilisateur, Utilisateur
 
 __all__ = [
@@ -12,6 +13,7 @@ __all__ = [
     "Role",
     "SessionUtilisateur",
     "StatutRecette",
+    "Stock",
     "TypePlat",
     "Utilisateur",
 ]
