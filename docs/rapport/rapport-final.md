@@ -135,7 +135,7 @@ présents dans l'historique du dépôt. Le statut exact des stories et la valida
 | Tests exécutés et passants | *à renseigner* |
 | Retours du PO | *à renseigner dans le CR* |
 
-### Sprints 2 à 5
+### Sprints 2 à 4
 
 Les pages de ces sprints et leurs résultats sont à créer ou à compléter pendant les séances. Elles
 devront préciser les stories réellement engagées, les tâches, la démo, les tests, les écarts et la
@@ -143,21 +143,21 @@ rétrospective.
 
 ## 7. Suivi quantitatif
 
-Les valeurs planifiées proviennent de l'export [`docs/backlog/sprints.csv`](../backlog/sprints.csv).
+Les valeurs planifiées proviennent du planning révisé le 06/11 ([`docs/sprints/README.md`](../sprints/README.md)).
 Les valeurs réalisées ne doivent pas être déduites des commits : elles doivent venir du board et
 des pages de sprint.
 
 | Sprint | Points planifiés | Points réalisés | Heures planifiées | Heures réelles | Vélocité |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | 0 | 0 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
-| 1 | 15 dans l'export initial | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
-| 2 | 19 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
-| 3 | 20 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
-| 4 | 14 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
-| 5 | 0 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
+| 1 | 10 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
+| 2 | 13 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
+| 3 | 16 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
+| 4 | 0 | *à renseigner* | *à renseigner* | *à renseigner* | *à renseigner* |
 
-> L'engagement du sprint 1 a ensuite été révisé à 10 points dans sa page de sprint. Cet écart
-> entre l'export initial et le planning réellement décidé doit être expliqué dans le bilan final.
+> Le planning initial de l'export [`docs/backlog/sprints.csv`](../backlog/sprints.csv) prévoyait
+> 15, 19, 20 et 14 points pour les sprints 1 à 4, puis un sprint 5. Cet écart avec le planning
+> révisé le 06/11 doit être expliqué dans le bilan final.
 
 ## 8. Réalisation technique
 
