@@ -2,13 +2,15 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request, status
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from app import models  # noqa: F401
 from app.database import SessionLocal, init_db
 from app.donnees_initiales import charger_allergenes
 from app.routers import connexion, ingredients, pages, recettes
+from app.templating import templates
 
 
 @asynccontextmanager
@@ -25,3 +27,10 @@ app.include_router(pages.router)
 app.include_router(connexion.router)
 app.include_router(ingredients.router)
 app.include_router(recettes.router)
+
+
+@app.exception_handler(status.HTTP_403_FORBIDDEN)
+def acces_refuse(request: Request, _erreur: HTTPException) -> HTMLResponse:
+    return templates.TemplateResponse(
+        request, "acces-refuse.html", status_code=status.HTTP_403_FORBIDDEN
+    )
