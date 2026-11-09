@@ -11,9 +11,24 @@
   "LEGUME": "Légume",
   "VEGETARIEN": "Végétarien",
 } %}
+{% set libelles_statuts = {
+  "BROUILLON": "Brouillon",
+  "A_VALIDER": "À valider",
+  "VALIDEE": "Validée",
+  "REFUSEE": "Refusée",
+} %}
 <h1>{{ recette.titre }}</h1>
 <p>{{ libelles_types[recette.type.value] }}{% if recette.vegetarien and recette.type.value != "VEGETARIEN" %} · Végétarien{% endif %}</p>
-<p><a class="bouton" href="/recettes/{{ recette.id }}">Modifier</a></p>
+{% if erreur %}<p class="erreur" role="alert">{{ erreur }}</p>{% endif %}
+<p>Statut : <strong>{{ libelles_statuts[recette.statut.value] }}</strong></p>
+<div class="actions-formulaire">
+  <a class="bouton" href="/recettes/{{ recette.id }}">Modifier</a>
+  {% if recette.statut.value == "BROUILLON" and request.state.utilisateur.role == "CHEF" %}
+  <form method="post" action="/recettes/{{ recette.id }}/proposer">
+    <button type="submit">Proposer à la validation</button>
+  </form>
+  {% endif %}
+</div>
 
 <div class="fiche">
   <section>
