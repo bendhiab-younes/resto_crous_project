@@ -49,3 +49,17 @@ def test_TC_S07_03_autre_role_interdit(client_avec_role, db):
 
     assert client.get("/stocks").status_code == 403
     assert client.get(f"/stocks/{ingredient.id}").status_code == 403
+
+
+def test_TC_S07_04_valeur_non_numerique_refusee(client_avec_role, db):
+    client = client_avec_role(Role.INTENDANT)
+    ingredient = ajouter_ingredient(db)
+
+    reponse = client.post(
+        f"/stocks/{ingredient.id}",
+        data={"quantite_disponible": "beaucoup", "seuil_alerte": "300"},
+    )
+
+    assert reponse.status_code == 422
+    assert "Saisir un nombre." in reponse.text
+    assert db.scalar(select(Stock)) is None
