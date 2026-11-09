@@ -350,6 +350,14 @@ td form {
 }
 
 /* Fiche de recette */
+.fiche {
+  margin-top: 1.5rem;
+}
+
+.actions-formulaire form {
+  margin: 0;
+}
+
 .fiche section {
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;

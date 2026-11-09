@@ -1,8 +1,10 @@
+from collections.abc import Callable
+
 from fastapi import Depends, HTTPException, Request, status
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.models import SessionUtilisateur, Utilisateur
+from app.models import Role, SessionUtilisateur, Utilisateur
 
 COOKIE_SESSION = "session"
 
@@ -20,3 +22,12 @@ def exiger_connexion(utilisateur: Utilisateur | None = Depends(utilisateur_conne
     if utilisateur is None:
         raise HTTPException(status.HTTP_303_SEE_OTHER, headers={"Location": "/connexion"})
     return utilisateur
+
+
+def exiger_role(*roles: Role) -> Callable[..., Utilisateur]:
+    def verifier(utilisateur: Utilisateur = Depends(exiger_connexion)) -> Utilisateur:
+        if utilisateur.role not in roles:
+            raise HTTPException(status.HTTP_403_FORBIDDEN)
+        return utilisateur
+
+    return verifier

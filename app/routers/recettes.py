@@ -7,10 +7,18 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.auth import exiger_connexion
+from app.auth import exiger_connexion, exiger_role
 from app.calculs import allergenes_recette, cout_recette, nutrition_pour_100g
 from app.database import get_db
-from app.models import Ingredient, LigneRecette, Recette, TypePlat, Utilisateur
+from app.models import (
+    Ingredient,
+    LigneRecette,
+    Recette,
+    Role,
+    StatutRecette,
+    TypePlat,
+    Utilisateur,
+)
 from app.templating import templates
 from app.validation import lire_nombre
 
@@ -88,6 +96,26 @@ def recette_ou_404(db: Session, recette_id: int) -> Recette:
     if recette is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND)
     return recette
+
+
+def afficher_fiche(
+    request: Request,
+    recette: Recette,
+    erreur: str | None = None,
+    status_code: int = status.HTTP_200_OK,
+) -> HTMLResponse:
+    return templates.TemplateResponse(
+        request,
+        "recettes/fiche.html",
+        {
+            "recette": recette,
+            "cout": cout_recette(recette.lignes),
+            "nutrition": nutrition_pour_100g(recette.lignes),
+            "allergenes": allergenes_recette(recette.lignes),
+            "erreur": erreur,
+        },
+        status_code=status_code,
+    )
 
 
 def valider_lignes(
@@ -179,17 +207,26 @@ def creer(
 
 @router.get("/{recette_id}/fiche", response_class=HTMLResponse)
 def fiche(request: Request, recette_id: int, db: Session = Depends(get_db)):
+    return afficher_fiche(request, recette_ou_404(db, recette_id))
+
+
+@router.post(
+    "/{recette_id}/proposer",
+    response_class=HTMLResponse,
+    dependencies=[Depends(exiger_role(Role.CHEF))],
+)
+def proposer(request: Request, recette_id: int, db: Session = Depends(get_db)):
     recette = recette_ou_404(db, recette_id)
-    return templates.TemplateResponse(
-        request,
-        "recettes/fiche.html",
-        {
-            "recette": recette,
-            "cout": cout_recette(recette.lignes),
-            "nutrition": nutrition_pour_100g(recette.lignes),
-            "allergenes": allergenes_recette(recette.lignes),
-        },
-    )
+    if recette.statut is not StatutRecette.BROUILLON:
+        return afficher_fiche(
+            request,
+            recette,
+            erreur="Seule une recette en brouillon peut être proposée.",
+            status_code=status.HTTP_409_CONFLICT,
+        )
+    recette.statut = StatutRecette.A_VALIDER
+    db.commit()
+    return RedirectResponse(f"/recettes/{recette.id}/fiche", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @router.get("/{recette_id}", response_class=HTMLResponse)

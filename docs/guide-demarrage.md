@@ -24,6 +24,8 @@ python -m app.creer_utilisateur moi CHEF    # demande un mot de passe
 uvicorn app.main:app --reload
 ```
 
+Pour changer de rôle : `python -m app.changer_role moi INTENDANT`.
+
 Ouvrir <http://127.0.0.1:8000> et se connecter. Le compte existe seulement dans `resto.db`, sur
 votre machine. Si un modèle change, supprimer `resto.db` et recréer le compte.
 

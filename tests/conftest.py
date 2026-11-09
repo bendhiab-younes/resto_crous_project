@@ -36,3 +36,17 @@ def utilisateur(db):
 def client_connecte(client, utilisateur):
     client.post("/connexion", data={"identifiant": "chef", "mot_de_passe": "secret"})
     return client
+
+
+@pytest.fixture
+def client_avec_role(client, db):
+    def connecter(role):
+        identifiant = role.value.lower()
+        compte = Utilisateur(identifiant=identifiant, role=role)
+        compte.definir_mot_de_passe("secret")
+        db.add(compte)
+        db.commit()
+        client.post("/connexion", data={"identifiant": identifiant, "mot_de_passe": "secret"})
+        return client
+
+    return connecter
